@@ -52,6 +52,7 @@ echo "-----"
 
 echo "Cloning & Entering ZaneyOS Repository"
 git clone https://gitlab.com/zaney/zaneyos.git
+git checkout stable-1.0
 cd zaneyos
 mkdir hosts/$hostName
 cp hosts/default/*.nix hosts/$hostName
