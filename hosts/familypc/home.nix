@@ -31,6 +31,7 @@ in
     inputs.hyprland.homeManagerModules.default
     ../../config/hyprland.nix
     ../../config/waybar.nix
+    ../../config/wlogout.nix
   ];
 
   # Define Settings For Xresources
