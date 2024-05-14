@@ -16,8 +16,10 @@ in
     ./users.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
+    ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
+    ../../modules/local-hardware-clock.nix
   ];
 
   # Bootloader.
@@ -41,14 +43,14 @@ in
   boot.kernelModules = [ "v4l2loopback" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
-  networking.hostName = "${host}";
-
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
+  networking.hostName = "${host}";
+  networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
   time.timeZone = "America/Chicago";
@@ -150,6 +152,7 @@ in
     rofi-wayland
     imv
     transmission-gtk
+    distrobox
     mpv
     gimp
     obs-studio
@@ -164,50 +167,71 @@ in
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
+  environment.systemPackages =
+    let
+      sugar = pkgs.callPackage ../../pkgs/sddm-sugar-dark.nix {};
+      tokyo-night = pkgs.libsForQt5.callPackage ../../pkgs/sddm-tokyo-night.nix {};
+    in [ 
+      sugar.sddm-sugar-dark # Name: sugar-dark
+      tokyo-night # Name: tokyo-night-sddm
+      pkgs.libsForQt5.qt5.qtgraphicaleffects
+  ];
+
   environment.variables = {
     ZANEYOS_VERSION = "2.0";
   };
 
   # Services to start
-  services.xserver = {
-    enable = true;
-    displayManager.lightdm.enable = true;
-    desktopManager.cinnamon.enable = true;
-    xkb = {
-      layout = "us";
-      variant = "";
+  services = {
+    xserver = {
+      enable = true;
+      displayManager.sddm = {
+        enable = true;
+        autoNumlock = true;
+        wayland.enable = true;
+        theme = "sugar-dark";
+      };
+      desktopManager.cinnamon.enable = true;
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
-  };
-  services.libinput.enable = true;
-  services.openssh.enable = true;
-  services.printing.enable = true;
-  services.avahi = {
-    enable = true;
-    nssmdns4 = true;
-    openFirewall = true;
-  };
-  services.ipp-usb.enable = true;
-  services.syncthing = {
-    enable = false;
-    user = "${username}";
-    dataDir = "/home/${username}";
-    configDir = "/home/${username}/.config/syncthing";
+    libinput.enable = true;
+    openssh.enable = true;
+    printing.enable = true;
+    avahi = {
+      enable = true;
+      nssmdns4 = true;
+      openFirewall = true;
+    };
+    ipp-usb.enable = true;
+    syncthing = {
+      enable = false;
+      user = "${username}";
+      dataDir = "/home/${username}";
+      configDir = "/home/${username}/.config/syncthing";
+    };
+    pipewire = {
+      enable = true;
+      alsa.enable = true;
+      alsa.support32Bit = true;
+      pulse.enable = true;
+    };
+    rpcbind.enable = true;
+    nfs.server.enable = true;
   };
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.sane-airscan ];
     disabledDefaultBackends = [ "escl" ];
   };
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-  };
 
   # Security / Polkit
   security.polkit.enable = true;
@@ -246,7 +270,13 @@ in
     };
   };
 
+  # Virtualization / Containers
   virtualisation.libvirtd.enable = true;
+  virtualisation.podman = {
+    enable = true;
+    dockerCompat = true;
+    defaultNetwork.settings.dns_enabled = true;
+  };
 
   # OpenGL
   hardware.opengl = {
@@ -258,8 +288,14 @@ in
   # Extra Module Options
   drivers.amdgpu.enable = true;
   drivers.nvidia.enable = false;
+  drivers.nvidia-prime = {
+    enable = false;
+    intelBusID = "";
+    nvidiaBusID = "";
+  };
   drivers.intel.enable = false;
   vm.guest-services.enable = false;
+  local.hardware-clock.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
