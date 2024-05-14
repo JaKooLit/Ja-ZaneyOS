@@ -24,7 +24,10 @@ in
       ];
       shell = pkgs.bash;
       ignoreShellProgramCheck = true;
-      packages = with pkgs; [ obs-studio zeroad ];
+      packages = with pkgs; [
+        obs-studio
+        zeroad
+      ];
     };
     # "newuser" = {
     #   homeMode = "755";

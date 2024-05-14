@@ -107,76 +107,79 @@ in
     mutableUsers = true;
   };
 
-  environment.systemPackages = let
-    sugar = pkgs.callPackage ../../pkgs/sddm-sugar-dark.nix {};
-    tokyo-night = pkgs.libsForQt5.callPackage ../../pkgs/sddm-tokyo-night.nix {};
-  in with pkgs; [
-    vim
-    wget
-    git
-    cmatrix
-    lolcat
-    neofetch
-    htop
-    btop
-    libvirt
-    lxqt.lxqt-policykit
-    lm_sensors
-    unzip
-    unrar
-    libnotify
-    eza
-    v4l-utils
-    ydotool
-    wl-clipboard
-    socat
-    cowsay
-    lsd
-    lshw
-    pkg-config
-    meson
-    gnumake
-    ninja
-    symbola
-    noto-fonts-color-emoji
-    material-icons
-    brightnessctl
-    virt-viewer
-    swappy
-    ripgrep
-    appimage-run
-    networkmanagerapplet
-    yad
-    playerctl
-    nh
-    nixfmt-rfc-style
-    discord
-    libvirt
-    swww
-    grim
-    slurp
-    gnome.file-roller
-    swaynotificationcenter
-    rofi-wayland
-    imv
-    transmission-gtk
-    distrobox
-    mpv
-    gimp
-    obs-studio
-    rustup
-    audacity
-    pavucontrol
-    tree
-    protonup-qt
-    font-awesome
-    spotify
-    neovide
-    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-    sugar.sddm-sugar-dark # Name: sugar-dark
-    tokyo-night # Name: tokyo-night-sddm
-    pkgs.libsForQt5.qt5.qtgraphicaleffects
-  ];
+  environment.systemPackages =
+    let
+      sugar = pkgs.callPackage ../../pkgs/sddm-sugar-dark.nix { };
+      tokyo-night = pkgs.libsForQt5.callPackage ../../pkgs/sddm-tokyo-night.nix { };
+    in
+    with pkgs;
+    [
+      vim
+      wget
+      git
+      cmatrix
+      lolcat
+      neofetch
+      htop
+      btop
+      libvirt
+      lxqt.lxqt-policykit
+      lm_sensors
+      unzip
+      unrar
+      libnotify
+      eza
+      v4l-utils
+      ydotool
+      wl-clipboard
+      socat
+      cowsay
+      lsd
+      lshw
+      pkg-config
+      meson
+      gnumake
+      ninja
+      symbola
+      noto-fonts-color-emoji
+      material-icons
+      brightnessctl
+      virt-viewer
+      swappy
+      ripgrep
+      appimage-run
+      networkmanagerapplet
+      yad
+      playerctl
+      nh
+      nixfmt-rfc-style
+      discord
+      libvirt
+      swww
+      grim
+      slurp
+      gnome.file-roller
+      swaynotificationcenter
+      rofi-wayland
+      imv
+      transmission-gtk
+      distrobox
+      mpv
+      gimp
+      obs-studio
+      rustup
+      audacity
+      pavucontrol
+      tree
+      protonup-qt
+      font-awesome
+      spotify
+      neovide
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      sugar.sddm-sugar-dark # Name: sugar-dark
+      tokyo-night # Name: tokyo-night-sddm
+      pkgs.libsForQt5.qt5.qtgraphicaleffects
+    ];
 
   environment.variables = {
     ZANEYOS_VERSION = "2.0";

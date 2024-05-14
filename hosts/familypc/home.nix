@@ -50,6 +50,27 @@ in
   };
   home.file.".config/starship.toml".source = ../../config/starship.toml;
   home.file.".emoji".source = ../../config/emoji;
+  home.file.".config/neofetch/config.conf".text = ''
+    print_info() {
+        prin "$(color 6)  ZaneyOS $ZANEYOS_VERSION"
+        info underline
+        info "$(color 7)  VER" kernel
+        info "$(color 2)  UP " uptime
+        info "$(color 4)  PKG" packages
+        info "$(color 6)  DE " de
+        info "$(color 5)  TER" term
+        info "$(color 3)  CPU" cpu
+        info "$(color 7)  GPU" gpu
+        info "$(color 5)  MEM" memory
+        prin " "
+        prin "$(color 1) $(color 2) $(color 3) $(color 4) $(color 5) $(color 6) $(color 7) $(color 8)"
+    }
+    distro_shorthand="on"
+    memory_unit="gib"
+    cpu_temp="C"
+    separator=" $(color 4)>"
+    stdout="off"
+  '';
 
   # Install & Configure Git
   programs.git = {
@@ -73,19 +94,72 @@ in
     };
   };
 
+  # Configure Cursor Theme
+  home.pointerCursor = {
+    gtk.enable = true;
+    x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Ice";
+    size = 24;
+  };
+
+  # Theme GTK
+  gtk = {
+    enable = true;
+    font = {
+      name = "Ubuntu";
+      size = 12;
+      package = pkgs.ubuntu_font_family;
+    };
+    theme = {
+      name = "${config.colorScheme.slug}";
+      package = gtkThemeFromScheme {scheme = config.colorScheme;};
+    };
+    iconTheme = {
+      name = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    gtk3.extraConfig = {
+      gtk-application-prefer-dark-theme=1;
+    };
+    gtk4.extraConfig = {
+      gtk-application-prefer-dark-theme=1;
+    };
+  };
+
+  # Theme QT -> GTK
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style = {
+        name = "adwaita-dark";
+        package = pkgs.adwaita-qt;
+    };
+  };
+
   # Scripts
   home.packages = with pkgs; [
     (import ../../scripts/emopicker9000.nix { inherit pkgs; })
     (import ../../scripts/task-waybar.nix { inherit pkgs; })
     (import ../../scripts/squirtle.nix { inherit pkgs; })
-    (import ../../scripts/themechange.nix { inherit pkgs; inherit host; inherit username; })
+    (import ../../scripts/themechange.nix {
+      inherit pkgs;
+      inherit host;
+      inherit username;
+    })
     (import ../../scripts/theme-selector.nix { inherit pkgs; })
     (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
-    (import ../../scripts/wallsetter.nix { inherit pkgs; inherit username; })
+    (import ../../scripts/wallsetter.nix {
+      inherit pkgs;
+      inherit username;
+    })
     (import ../../scripts/web-search.nix { inherit pkgs; })
     (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
-    (import ../../scripts/list-hypr-bindings.nix { inherit pkgs; inherit host; })
+    (import ../../scripts/list-hypr-bindings.nix {
+      inherit pkgs;
+      inherit host;
+    })
   ];
 
   programs = {

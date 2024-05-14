@@ -1,4 +1,9 @@
-{ pkgs, host, username, ... }:
+{
+  pkgs,
+  host,
+  username,
+  ...
+}:
 
 pkgs.writeShellScriptBin "themechange" ''
   if [[ ! $@ ]];then
