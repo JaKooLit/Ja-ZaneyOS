@@ -53,6 +53,7 @@ in
   home.file.".config/ascii-neofetch".source = ../../config/ascii-neofetch;
   home.file.".base16-themes".source = ../../config/base16-themes;
   home.file.".emoji".source = ../../config/emoji;
+  home.file.".face.icon".source = ../../config/face.jpg;
   home.file.".config/neofetch/config.conf".text = ''
     print_info() {
         prin "$(color 6)  ZaneyOS $ZANEYOS_VERSION"
