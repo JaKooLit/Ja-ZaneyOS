@@ -1,11 +1,4 @@
 {
-  userHome = "/home/${setUsername}";
-  flakeDir = "/home/${setUsername}/zaneyos";
-  wallpaperDir = "/home/${setUsername}/Pictures/Wallpapers";
-  screenshotDir = "/home/${setUsername}/Pictures/Screenshots";
-  flakePrev = "/home/${setUsername}/.zaneyos-previous";
-  flakeBackup = "/home/${setUsername}/.zaneyos-backup";
-
   # Git Configuration ( For Pulling Software Repos )
   gitUsername = "Tyler Kelley";
   gitEmail = "tylerzanekelley@gmail.com";
