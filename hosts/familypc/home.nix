@@ -50,6 +50,8 @@ in
     recursive = true;
   };
   home.file.".config/starship.toml".source = ../../config/starship.toml;
+  home.file.".config/ascii-neofetch".source = ../../config/ascii-neofetch;
+  home.file.".base16-themes".source = ../../config/base16-themes;
   home.file.".emoji".source = ../../config/emoji;
   home.file.".config/neofetch/config.conf".text = ''
     print_info() {
