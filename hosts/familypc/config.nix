@@ -144,7 +144,7 @@ in
     yad
     playerctl
     nh
-    nixfmt
+    nixfmt-rfc-style
     discord
     libvirt
     swww

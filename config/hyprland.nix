@@ -119,6 +119,7 @@ with lib;
                 exec-once = swaync
                 exec-once = nm-applet --indicator
                 exec-once = lxqt-policykit-agent
+                exec-once = swww img /home/${username}/.config/wallpapers/zaney-wallpaper.jpg
                 dwindle {
                   pseudotile = true
                   preserve_split = true
@@ -130,16 +131,7 @@ with lib;
                 bind = ${modifier}SHIFT,Return,exec,rofi-launcher
                 bind = ${modifier}SHIFT,W,exec,web-search
                 bind = ${modifier}SHIFT,N,exec,swaync-client -rs
-                ${
-                  if browser == "google-chrome" then
-                    ''
-                      bind = ${modifier},W,exec,google-chrome-stable
-                    ''
-                  else
-                    ''
-                      bind = ${modifier},W,exec,${browser}
-                    ''
-                }
+                bind = ${modifier},W,exec,${browser}
                 bind = ${modifier},E,exec,emopicker9000
                 bind = ${modifier},S,exec,screenshootin
                 bind = ${modifier},D,exec,discord
