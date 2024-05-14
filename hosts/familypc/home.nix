@@ -39,7 +39,7 @@ in
   };
 
   # Place Files Inside Home Directory
-  home.file.".config/wallpapers" = {
+  home.file."Pictures/Wallpapers" = {
     source = ../../config/wallpapers;
     recursive = true;
   };
@@ -80,6 +80,7 @@ in
     (import ../../scripts/themechange.nix { inherit pkgs; inherit host; inherit username; })
     (import ../../scripts/theme-selector.nix { inherit pkgs; })
     (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
+    (import ../../scripts/wallsetter.nix { inherit pkgs; inherit username; })
     (import ../../scripts/web-search.nix { inherit pkgs; })
     (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
     (import ../../scripts/screenshootin.nix { inherit pkgs; })
@@ -98,7 +99,7 @@ in
         wheel_scroll_min_lines = 1;
         window_padding_width = 4;
         confirm_os_window_close = 0;
-        background_opacity = "0.85";
+        background_opacity = "0.9";
       };
       extraConfig = ''
         foreground #${palette.base05}

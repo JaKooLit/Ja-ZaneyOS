@@ -24,7 +24,7 @@ in
       ];
       shell = pkgs.bash;
       ignoreShellProgramCheck = true;
-      packages = with pkgs; [ ];
+      packages = with pkgs; [ obs-studio ];
     };
     # "newuser" = {
     #   homeMode = "755";

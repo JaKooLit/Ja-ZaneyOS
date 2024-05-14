@@ -120,7 +120,7 @@ with lib;
                 exec-once = swaync
                 exec-once = nm-applet --indicator
                 exec-once = lxqt-policykit-agent
-                exec-once = swww img /home/${username}/.config/wallpapers/zaney-wallpaper.jpg
+                exec-once = swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg
                 dwindle {
                   pseudotile = true
                   preserve_split = true
