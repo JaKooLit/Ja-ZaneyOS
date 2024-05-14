@@ -10,8 +10,10 @@
   borderAnim = true; # Enable / Disable Hyprland Border Animation
   extraMonitorSettings = "";
 
+  # Waybar Settings
+  clock24h = false;
+
   # Program Options
   browser = "firefox"; # Set Default Browser
-  terminal = "kitty";  # Set Default System Terminal
+  terminal = "kitty"; # Set Default System Terminal
 }
-

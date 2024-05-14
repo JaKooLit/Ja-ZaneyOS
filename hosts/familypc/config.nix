@@ -7,6 +7,9 @@
   ...
 }:
 
+let
+  inherit (import ./variables.nix) browser;
+in
 {
   imports = [
     ./hardware.nix
@@ -16,7 +19,9 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernel.sysctl = { "vm.max_map_count" = 2147483642; };
+  boot.kernel.sysctl = {
+    "vm.max_map_count" = 2147483642;
+  };
   boot.tmp.useTmpfs = false;
   boot.tmp.tmpfsSize = "30%";
 
@@ -24,8 +29,7 @@
   boot.kernelModules = [ "v4l2loopback" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
-  networking.hostName = "${host}"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "${host}";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -66,7 +70,31 @@
     pulse.enable = true;
   };
 
-  programs.firefox.enable = true;
+  programs = {
+    hyprland = {
+      enable = true;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      xwayland.enable = true;
+    };
+    firefox.enable = true;
+    dconf.enable = true;
+    seahorse.enable = true;
+    fuse.userAllowOther = true;
+    mtr.enable = true;
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+    virt-manager.enable = true;
+  };
+
+  # Steam Configuration
+  programs.steam = {
+    enable = true;
+    gamescopeSession.enable = true;
+    remotePlay.openFirewall = true;
+    dedicatedServer.openFirewall = true;
+  };
 
   nixpkgs.config.allowUnfree = true;
 
@@ -78,12 +106,73 @@
     vim
     wget
     git
+    cmatrix
+    lolcat
+    neofetch
+    htop
+    btop
+    libvirt
+    lxqt.lxqt-policykit
+    lm_sensors
+    unzip
+    unrar
+    libnotify
+    eza
+    v4l-utils
+    ydotool
+    wl-clipboard
+    socat
+    cowsay
+    lsd
+    lshw
+    pkg-config
+    meson
+    hugo
+    gnumake
+    ninja
+    go
+    nodejs
+    symbola
+    noto-fonts-color-emoji
+    material-icons
+    brightnessctl
+    virt-viewer
+    swappy
+    ripgrep
+    appimage-run
+    networkmanagerapplet
+    yad
+    playerctl
+    nh
+    nixfmt
+    discord
+    libvirt
+    swww
+    grim
+    slurp
+    gnome.file-roller
+    swaynotificationcenter
+    rofi-wayland
+    imv
+    transmission-gtk
+    mpv
+    gimp
+    obs-studio
+    rustup
+    audacity
+    pavucontrol
+    tree
+    protonup-qt
+    font-awesome
+    spotify
+    swayidle
+    neovide
+    (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
 
   environment.variables = {
-    ZANEYOS_VERSION="2.0";
+    ZANEYOS_VERSION = "2.0";
   };
-
 
   # List services that you want to enable:
   # Enable the X11 windowing system.
@@ -103,11 +192,12 @@
   nix = {
     settings = {
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
-      substituters = ["https://hyprland.cachix.org"];
-      trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      experimental-features = [
+        "nix-command"
+        "flakes"
       ];
+      substituters = [ "https://hyprland.cachix.org" ];
+      trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
     };
     gc = {
       automatic = true;
@@ -116,6 +206,14 @@
     };
   };
 
+  virtualisation.libvirtd.enable = true;
+
+  # OpenGL
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+  };
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

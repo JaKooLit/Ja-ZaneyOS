@@ -14,11 +14,7 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      ...
-    }:
+    inputs@{ nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       host = "familypc";
