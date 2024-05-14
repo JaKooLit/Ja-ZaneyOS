@@ -15,6 +15,7 @@ in
     ./hardware.nix
     ./users.nix
     ../../modules/amd-drivers.nix
+    ../../modules/nvidia-drivers.nix
   ];
 
   # Bootloader.
@@ -63,20 +64,6 @@ in
     LC_PAPER = "en_US.UTF-8";
     LC_TELEPHONE = "en_US.UTF-8";
     LC_TIME = "en_US.UTF-8";
-  };
-
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
-  # Enable sound with pipewire.
-  sound.enable = true;
-  hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
   };
 
   programs = {
@@ -136,11 +123,8 @@ in
     lshw
     pkg-config
     meson
-    hugo
     gnumake
     ninja
-    go
-    nodejs
     symbola
     noto-fonts-color-emoji
     material-icons
@@ -174,7 +158,6 @@ in
     protonup-qt
     font-awesome
     spotify
-    swayidle
     neovide
     (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
   ];
@@ -183,8 +166,7 @@ in
     ZANEYOS_VERSION = "2.0";
   };
 
-  # List services that you want to enable:
-  # Enable the X11 windowing system.
+  # Services to start
   services.xserver = {
     enable = true;
     displayManager.lightdm.enable = true;
@@ -196,6 +178,36 @@ in
   };
   services.libinput.enable = true;
   services.openssh.enable = true;
+  services.printing.enable = true;
+  # Enable sound with pipewire.
+  sound.enable = true;
+  hardware.pulseaudio.enable = false;
+  security.rtkit.enable = true;
+  services.pipewire = {
+    enable = true;
+    alsa.enable = true;
+    alsa.support32Bit = true;
+    pulse.enable = true;
+  };
+
+  # Security / Polkit
+  security.polkit.enable = true;
+  security.polkit.extraConfig = ''
+    polkit.addRule(function(action, subject) {
+      if (
+        subject.isInGroup("users")
+          && (
+            action.id == "org.freedesktop.login1.reboot" ||
+            action.id == "org.freedesktop.login1.reboot-multiple-sessions" ||
+            action.id == "org.freedesktop.login1.power-off" ||
+            action.id == "org.freedesktop.login1.power-off-multiple-sessions"
+          )
+        )
+      {
+        return polkit.Result.YES;
+      }
+    })
+  '';
 
   # Optimization settings and garbage collection automation
   nix = {
@@ -226,6 +238,7 @@ in
 
   # Extra Module Options
   drivers.amdgpu.enable = true;
+  drivers.nvidia.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
