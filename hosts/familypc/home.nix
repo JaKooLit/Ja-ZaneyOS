@@ -8,6 +8,7 @@
   ...
 }:
 let
+  palette = config.colorScheme.palette;
   inherit (import ./variables.nix)
     gitUsername
     gitEmail
