@@ -16,6 +16,7 @@ in
     ./users.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
+    ../../modules/intel-drivers.nix
     ../../modules/vm-guest-services.nix
   ];
 
@@ -186,6 +187,12 @@ in
     openFirewall = true;
   };
   services.ipp-usb.enable = true;
+  services.syncthing = {
+    enable = false;
+    user = "${username}";
+    dataDir = "/home/${username}";
+    configDir = "/home/${username}/.config/syncthing";
+  };
   hardware.sane = {
     enable = true;
     extraBackends = [ pkgs.sane-airscan ];
@@ -251,6 +258,7 @@ in
   # Extra Module Options
   drivers.amdgpu.enable = true;
   drivers.nvidia.enable = false;
+  drivers.intel.enable = false;
   vm.guest-services.enable = false;
 
   # Open ports in the firewall.
