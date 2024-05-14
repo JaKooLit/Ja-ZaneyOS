@@ -48,7 +48,7 @@ in
     recursive = true;
   };
   home.file.".config/starship.toml".source = ../../config/starship.toml;
-  home.file.".emoji".source = .../../config/emoji;
+  home.file.".emoji".source = ../../config/emoji;
 
   # Install & Configure Git
   programs.git = {
