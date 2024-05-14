@@ -14,6 +14,7 @@ in
   imports = [
     ./hardware.nix
     ./users.nix
+    ../../modules/amd-drivers.nix
   ];
 
   # Bootloader.
@@ -24,6 +25,14 @@ in
   };
   boot.tmp.useTmpfs = false;
   boot.tmp.tmpfsSize = "30%";
+  boot.binfmt.registrations.appimage = {
+    wrapInterpreterInShell = false;
+    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+    recognitionType = "magic";
+    offset = 0;
+    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+    magicOrExtension = ''\x7fELF....AI\x02'';
+  };
 
   # This is for OBS Virtual Cam Support - v4l2loopback setup
   boot.kernelModules = [ "v4l2loopback" ];
@@ -214,6 +223,9 @@ in
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  # Extra Module Options
+  drivers.amdgpu.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];

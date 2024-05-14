@@ -29,6 +29,7 @@ in
     inputs.nix-colors.homeManagerModules.default
     inputs.hyprland.homeManagerModules.default
     ../../config/hyprland.nix
+    ../../config/waybar.nix
   ];
 
   # Define Settings For Xresources
@@ -88,7 +89,7 @@ in
       };
       shellAliases = {
         sv = "sudo nvim";
-        flake-rebuild = "nh os switch --hostname ${host}";
+        flake-rebuild = "nh os switch --hostname ${host} /home/${username}/zaneyos";
         flake-update = "nh os switch --hostname ${host} --update";
         gcCleanup = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
