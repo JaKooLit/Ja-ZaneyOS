@@ -9,7 +9,7 @@
 let
   palette = config.colorScheme.palette;
   betterTransition = "all 0.3s cubic-bezier(.55,-0.68,.48,1.682)";
-  inherit (import ../hosts/${host}/variables.nix) clock24h;
+  inherit (import ../hosts/${host}/variables.nix) clock24h waybarAnimations;
 in
 with lib;
 {
@@ -217,7 +217,14 @@ with lib;
         	    color: #${palette.base00};
                 background: linear-gradient(45deg, #${palette.base0E}, #${palette.base0F}, #${palette.base0D}, #${palette.base09});
                 background-size: 300% 300%;
-                animation: gradient_horizontal 15s ease infinite;
+                ${
+                  if waybarAnimations == true then
+                    ''
+                      animation: gradient_horizontal 15s ease infinite;
+                    ''
+                  else
+                    ''''
+                }
         	    opacity: 0.5;
                 transition: ${betterTransition};
               }
@@ -229,7 +236,14 @@ with lib;
         	    color: #${palette.base00};
                 background: linear-gradient(45deg, #${palette.base0E}, #${palette.base0F}, #${palette.base0D}, #${palette.base09});
                 background-size: 300% 300%;
-                animation: gradient_horizontal 15s ease infinite;
+                ${
+                  if waybarAnimations == true then
+                    ''
+                      animation: gradient_horizontal 15s ease infinite;
+                    ''
+                  else
+                    ''''
+                }
                 transition: ${betterTransition};
         	    opacity: 1.0;
         	    min-width: 40px;
@@ -239,7 +253,14 @@ with lib;
         	    color: #${palette.base00};
                 background: linear-gradient(45deg, #${palette.base0E}, #${palette.base0F}, #${palette.base0D}, #${palette.base09});
                 background-size: 300% 300%;
-                animation: gradient_horizontal 15s ease infinite;
+                ${
+                  if waybarAnimations == true then
+                    ''
+                      animation: gradient_horizontal 15s ease infinite;
+                    ''
+                  else
+                    ''''
+                }
         	    opacity: 0.8;
                 transition: ${betterTransition};
               }
@@ -288,7 +309,14 @@ with lib;
             	color: #${palette.base01};
                 background: linear-gradient(45deg, #${palette.base0C}, #${palette.base0F}, #${palette.base0B}, #${palette.base08});
                 background-size: 300% 300%;
-                animation: gradient_horizontal 15s ease infinite;
+                ${
+                  if waybarAnimations == true then
+                    ''
+                      animation: gradient_horizontal 15s ease infinite;
+                    ''
+                  else
+                    ''''
+                }
             	margin: 4px;
             	padding: 2px 10px;
             	border-radius: 10px;
@@ -360,7 +388,14 @@ with lib;
             	color: #${palette.base00};
                 background: linear-gradient(45deg, #${palette.base09}, #${palette.base03}, #${palette.base0C}, #${palette.base07});
                 background-size: 300% 300%;
-                animation: gradient_horizontal 15s ease infinite;
+                ${
+                  if waybarAnimations == true then
+                    ''
+                      animation: gradient_horizontal 15s ease infinite;
+                    ''
+                  else
+                    ''''
+                }
             	margin: 4px;
             	padding: 2px 10px;
             	border-radius: 10px;

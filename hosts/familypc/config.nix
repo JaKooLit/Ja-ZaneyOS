@@ -4,6 +4,7 @@
   host,
   inputs,
   username,
+  options,
   ...
 }:
 
@@ -21,6 +22,10 @@ in
     ../../modules/vm-guest-services.nix
     ../../modules/local-hardware-clock.nix
   ];
+
+  # Kernel
+  boot.kernelPackages = pkgs.linuxPackages;
+  # boot.kernelPackages = pkgs.linuxPackages_zen;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -195,6 +200,7 @@ in
     };
     libinput.enable = true;
     openssh.enable = true;
+    flatpak.enable = false;
     printing.enable = true;
     avahi = {
       enable = true;
@@ -216,6 +222,13 @@ in
     };
     rpcbind.enable = true;
     nfs.server.enable = true;
+  };
+  systemd.services.flatpak-repo = {
+    wantedBy = [ "multi-user.target" ];
+    path = [ pkgs.flatpak ];
+    script = ''
+      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+    '';
   };
   hardware.sane = {
     enable = true;
