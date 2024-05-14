@@ -5,7 +5,8 @@
 let
   setUsername = "defaultuser";
   setHostname = "nixos";
-in {
+in
+{
   # No Change Needed Below
   username = "${setUsername}";
   hostname = "${setHostname}";
@@ -66,7 +67,7 @@ in {
 
   # Program Options
   browser = "firefox"; # Install & Set Default Browser
-  terminal = "kitty";  # Set Default System Terminal
+  terminal = "kitty"; # Set Default System Terminal
   distrobox = false;
   flatpak = false;
   kdenlive = false;
@@ -84,8 +85,7 @@ in {
 
   # Enable Python & PyCharm
   python = false;
-  
+
   # Enable SyncThing
   syncthing = false;
-
 }
