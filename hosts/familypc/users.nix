@@ -19,6 +19,8 @@ in
         "networkmanager"
         "wheel"
         "libvirtd"
+        "scanner"
+        "lp"
       ];
       shell = pkgs.bash;
       ignoreShellProgramCheck = true;

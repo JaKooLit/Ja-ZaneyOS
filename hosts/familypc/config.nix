@@ -16,6 +16,7 @@ in
     ./users.nix
     ../../modules/amd-drivers.nix
     ../../modules/nvidia-drivers.nix
+    ../../modules/vm-guest-services.nix
   ];
 
   # Bootloader.
@@ -179,6 +180,17 @@ in
   services.libinput.enable = true;
   services.openssh.enable = true;
   services.printing.enable = true;
+  services.avahi = {
+    enable = true;
+    nssmdns4 = true;
+    openFirewall = true;
+  };
+  services.ipp-usb.enable = true;
+  hardware.sane = {
+    enable = true;
+    extraBackends = [ pkgs.sane-airscan ];
+    disabledDefaultBackends = [ "escl" ];
+  };
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -239,6 +251,7 @@ in
   # Extra Module Options
   drivers.amdgpu.enable = true;
   drivers.nvidia.enable = false;
+  vm.guest-services.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
