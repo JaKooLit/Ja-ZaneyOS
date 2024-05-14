@@ -47,7 +47,7 @@ in
     source = ../../config/fonts;
     recursive = true;
   };
-  home.file.".config/starship.toml" = ../../config/starship.toml;
+  home.file.".config/starship.toml".source = ../../config/starship.toml;
   home.file.".emoji".source = .../../config/emoji;
 
   # Install & Configure Git
@@ -74,16 +74,16 @@ in
 
   # Scripts
   home.packages = with pkgs; [
-    (import ./../scripts/emopicker9000.nix { inherit pkgs; })
-    (import ./../scripts/task-waybar.nix { inherit pkgs; })
-    (import ./../scripts/squirtle.nix { inherit pkgs; })
-    (import ./../scripts/themechange.nix { inherit pkgs; inherit host; })
-    (import ./../scripts/theme-selector.nix { inherit pkgs; })
-    (import ./../scripts/nvidia-offload.nix { inherit pkgs; })
-    (import ./../scripts/web-search.nix { inherit pkgs; })
-    (import ./../scripts/rofi-launcher.nix { inherit pkgs; })
-    (import ./../scripts/screenshootin.nix { inherit pkgs; })
-    (import ./../scripts/list-hypr-bindings.nix { inherit pkgs; inherit host; })
+    (import ../../scripts/emopicker9000.nix { inherit pkgs; })
+    (import ../../scripts/task-waybar.nix { inherit pkgs; })
+    (import ../../scripts/squirtle.nix { inherit pkgs; })
+    (import ../../scripts/themechange.nix { inherit pkgs; inherit host; })
+    (import ../../scripts/theme-selector.nix { inherit pkgs; })
+    (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
+    (import ../../scripts/web-search.nix { inherit pkgs; })
+    (import ../../scripts/rofi-launcher.nix { inherit pkgs; })
+    (import ../../scripts/screenshootin.nix { inherit pkgs; })
+    (import ../../scripts/list-hypr-bindings.nix { inherit pkgs; inherit host; })
   ];
 
   programs = {
