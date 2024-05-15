@@ -184,6 +184,7 @@ in
       ];
       plugins = with pkgs.vimPlugins; [
         alpha-nvim
+        auto-session
         nvim-treesitter.withAllGrammars
 	      lualine-nvim
       	nvim-web-devicons
@@ -204,6 +205,7 @@ in
         ${builtins.readFile ../../config/nvim/keymaps.lua}
         ${builtins.readFile ../../config/nvim/options.lua}
         ${builtins.readFile ../../config/nvim/plugins/alpha.lua}
+        ${builtins.readFile ../../config/nvim/plugins/auto-session.lua}
         ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
