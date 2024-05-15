@@ -184,6 +184,8 @@ in
       ];
       plugins = with pkgs.vimPlugins; [
         nvim-treesitter.withAllGrammars
+	      lualine-nvim
+      	nvim-web-devicons
         comment-nvim
         {
           plugin = dracula-nvim;
@@ -191,14 +193,8 @@ in
         }
         plenary-nvim
         neodev-nvim
-        {
-          plugin = nvim-cmp;
-          config = toLuaFile ../../config/nvim/plugins/cmp.lua;
-        }
-        {
-          plugin = telescope-nvim;
-          config = toLuaFile ../../config/nvim/plugins/telescope.lua;
-        }
+        nvim-cmp
+	      telescope-nvim
         vim-tmux-navigator
       ];
       extraLuaConfig = ''
@@ -215,6 +211,7 @@ in
         opt.termguicolors = true
         opt.background = "dark"
         opt.signcolumn = "yes"
+	      opt.mouse = "a"
         opt.cursorline = true
         opt.backspace = "indent,eol,start"
         opt.clipboard:append("unnamedplus")
@@ -237,6 +234,24 @@ in
         keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
         keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
         keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+        -- Comment
+        require("Comment").setup()
+        -- Lualine
+        require("lualine").setup({
+          icons_enabled = true,
+          theme = 'dracula',
+        })
+        require('telescope').setup({
+	        extensions = {
+    	      fzf = {
+      	      fuzzy = true,                    -- false will only do exact matching
+              override_generic_sorter = true,  -- override the generic sorter
+              override_file_sorter = true,     -- override the file sorter
+              case_mode = "smart_case",        -- or "ignore_case" or "respect_case"
+                                               -- the default case_mode is "smart_case"
+    	      }
+  	      }
+        })
       '';
     };
     kitty = {
