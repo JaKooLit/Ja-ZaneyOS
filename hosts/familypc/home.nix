@@ -184,10 +184,7 @@ in
       ];
       plugins = with pkgs.vimPlugins; [
         nvim-treesitter.withAllGrammars
-        {
-          plugin = comment-nvim;
-          config = "require(\"Comment\").setup()";
-        }
+        comment-nvim
         {
           plugin = dracula-nvim;
           config = "colorscheme dracula";
