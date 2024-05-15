@@ -186,6 +186,7 @@ in
         alpha-nvim
         auto-session
         bufferline-nvim
+        dressing-nvim
         nvim-treesitter.withAllGrammars
 	      lualine-nvim
       	nvim-web-devicons
@@ -203,13 +204,14 @@ in
         vim-tmux-navigator
       ];
       extraLuaConfig = ''
-        ${builtins.readFile ../../config/nvim/keymaps.lua}
         ${builtins.readFile ../../config/nvim/options.lua}
+        ${builtins.readFile ../../config/nvim/keymaps.lua}
         ${builtins.readFile ../../config/nvim/plugins/alpha.lua}
         ${builtins.readFile ../../config/nvim/plugins/auto-session.lua}
         ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
+        require("bufferline").setup{}
         require("Comment").setup()
         require("lualine").setup({
           icons_enabled = true,

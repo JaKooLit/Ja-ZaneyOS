@@ -134,6 +134,7 @@ in
       wl-clipboard
       socat
       cowsay
+      ripgrep
       lsd
       lshw
       pkg-config
