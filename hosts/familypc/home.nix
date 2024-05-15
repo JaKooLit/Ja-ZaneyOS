@@ -206,6 +206,7 @@ in
         ${builtins.readFile ../../config/nvim/keymaps.lua}
         ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
+        ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
         require("Comment").setup()
         require("lualine").setup({
           icons_enabled = true,
