@@ -171,32 +171,55 @@ in
     neovim = {
       enable = true;
       defaultEditor = true;
+      viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
         nvim-treesitter.withAllGrammars
-	dracula-nvim
+        {
+          plugin = dracula-nvim;
+          config = "colorscheme dracula";
+        }
+        plenary-nvim
+        vim-tmux-navigator
       ];
       extraLuaConfig = ''
         local opt = vim.opt
         opt.guifont = "JetBrainsMono\\ NFM,Noto_Color_Emoji:h14"
-	opt.number = true
-	opt.relativenumber = true
-	opt.tabstop = 2
-	opt.shiftwidth = 2
-	opt.expandtab = true
-	opt.autoindent = true
-	opt.wrap = false
-	opt.ignorecase = true
-	opt.smartcase = true
-	opt.termguicolors = true
-	opt.background = "dark"
-	opt.signcolumn = "yes"
-	opt.cursorline = true
-	opt.backspace = "indent,eol,start"
-	opt.clipboard:append("unnamedplus")
-	opt.splitright = true
-	opt.splitbelow = true
+	      opt.number = true
+        opt.relativenumber = true
+        opt.tabstop = 2
+        opt.shiftwidth = 2
+        opt.expandtab = true
+        opt.autoindent = true
+        opt.wrap = false
+        opt.ignorecase = true
+        opt.smartcase = true
+        opt.termguicolors = true
+        opt.background = "dark"
+        opt.signcolumn = "yes"
+        opt.cursorline = true
+        opt.backspace = "indent,eol,start"
+        opt.clipboard:append("unnamedplus")
+        opt.splitright = true
+        opt.splitbelow = true
+        opt.swapfile = false
+        vim.g.mapleader = " "
+        local keymap = vim.keymap
+        -- use jk to exit insert mode
+        keymap.set("i", "jk", "<ESC>", { desc = "Exit insert mode with jk" })
+        -- clear search highlights
+        keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlights" })
+        -- window management
+        keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" }) -- split window vertically
+        keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" }) -- split window horizontally
+        keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+        keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" }) -- close current split window
+        keymap.set("n", "<leader>to", "<cmd>tabnew<CR>", { desc = "Open new tab" }) -- open new tab
+        keymap.set("n", "<leader>tx", "<cmd>tabclose<CR>", { desc = "Close current tab" }) -- close current tab
+        keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
+        keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
+        keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
       '';
     };
     kitty = {
