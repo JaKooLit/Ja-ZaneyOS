@@ -179,6 +179,7 @@ in
         viAlias = true;
         vimAlias = true;
         vimdiffAlias = true;
+        withNodeJs = true;
         extraPackages = with pkgs; [ lua-language-server ];
         plugins = with pkgs.vimPlugins; [
           alpha-nvim

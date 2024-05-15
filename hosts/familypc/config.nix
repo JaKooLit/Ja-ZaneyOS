@@ -147,7 +147,6 @@ in
       brightnessctl
       virt-viewer
       swappy
-      nodePackages_latest.npm
       appimage-run
       networkmanagerapplet
       yad
