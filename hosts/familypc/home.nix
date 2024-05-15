@@ -194,6 +194,9 @@ in
         plenary-nvim
         neodev-nvim
         nvim-cmp
+        luasnip
+        cmp_luasnip
+        cmp-nvim-lsp
 	      telescope-nvim
         vim-tmux-navigator
       ];
@@ -234,6 +237,7 @@ in
         keymap.set("n", "<leader>tn", "<cmd>tabn<CR>", { desc = "Go to next tab" }) --  go to next tab
         keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
         keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
+        ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
         -- Comment
         require("Comment").setup()
         -- Lualine
