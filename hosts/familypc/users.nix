@@ -27,6 +27,7 @@ in
       packages = with pkgs; [
         obs-studio
         zeroad
+        blender-hip
       ];
     };
     # "newuser" = {
