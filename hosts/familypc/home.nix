@@ -194,6 +194,8 @@ in
       	nvim-web-devicons
         nvim-cmp
         nvim-surround
+        nvim-lspconfig
+        cmp-nvim-lsp
         cmp-buffer
         luasnip
         cmp_luasnip
@@ -213,6 +215,8 @@ in
         nvim-tree-lua
         telescope-fzf-native-nvim
         vim-tmux-navigator
+        mason-nvim
+        mason-lspconfig-nvim
       ];
       extraLuaConfig = ''
         ${builtins.readFile ../../config/nvim/options.lua}
@@ -222,6 +226,7 @@ in
         ${builtins.readFile ../../config/nvim/plugins/auto-session.lua}
         ${builtins.readFile ../../config/nvim/plugins/comment.lua}
         ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
+        ${builtins.readFile ../../config/nvim/plugins/lsp.lua}
         ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/todo-comments.lua}
