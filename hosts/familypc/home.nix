@@ -212,6 +212,7 @@ in
         ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
+        require("ibl").setup()
         require("bufferline").setup{}
         require("Comment").setup()
         require("lualine").setup({
