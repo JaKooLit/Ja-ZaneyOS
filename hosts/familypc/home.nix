@@ -198,6 +198,7 @@ in
         cmp_luasnip
         cmp-nvim-lsp
 	      telescope-nvim
+        telescope-fzf-native-nvim
         vim-tmux-navigator
       ];
       extraLuaConfig = ''
@@ -238,6 +239,7 @@ in
         keymap.set("n", "<leader>tp", "<cmd>tabp<CR>", { desc = "Go to previous tab" }) --  go to previous tab
         keymap.set("n", "<leader>tf", "<cmd>tabnew %<CR>", { desc = "Open current buffer in new tab" }) --  move current buffer to new tab
         ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
+        ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         -- Comment
         require("Comment").setup()
         -- Lualine
