@@ -168,24 +168,44 @@ in
 
   programs = {
     gh.enable = true;
-    neovim = {
+    neovim = 
+    let
+      toLua = str: "lua << EOF\n${str}\nEOF\n";
+      toLuaFile = file: "lua << EOF\n${builtins.readFile file}\nEOF\n";
+    in
+    {
       enable = true;
       defaultEditor = true;
       viAlias = true;
       vimAlias = true;
       vimdiffAlias = true;
+      extraPackages = with pkgs; [
+        lua-language-server
+      ];
       plugins = with pkgs.vimPlugins; [
         nvim-treesitter.withAllGrammars
+        {
+          plugin = comment-nvim;
+          config = "require(\"Comment\").setup()";
+        }
         {
           plugin = dracula-nvim;
           config = "colorscheme dracula";
         }
         plenary-nvim
+        neodev-nvim
+        {
+          plugin = nvim-cmp;
+          config = toLuaFile ../../config/nvim/plugins/cmp.lua;
+        }
+        {
+          plugin = telescope-nvim;
+          config = toLuaFile ../../config/nvim/plugins/telescope.lua;
+        }
         vim-tmux-navigator
       ];
       extraLuaConfig = ''
         local opt = vim.opt
-        opt.guifont = "JetBrainsMono\\ NFM,Noto_Color_Emoji:h14"
 	      opt.number = true
         opt.relativenumber = true
         opt.tabstop = 2
