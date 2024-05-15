@@ -187,6 +187,7 @@ in
         auto-session
         bufferline-nvim
         dressing-nvim
+        indent-blankline-nvim
         nvim-treesitter.withAllGrammars
 	      lualine-nvim
       	nvim-web-devicons
