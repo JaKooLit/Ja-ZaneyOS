@@ -174,9 +174,30 @@ in
       vimAlias = true;
       vimdiffAlias = true;
       plugins = with pkgs.vimPlugins; [
-        nvim-lspconfig
         nvim-treesitter.withAllGrammars
+	dracula-nvim
       ];
+      extraLuaConfig = ''
+        local opt = vim.opt
+        opt.guifont = "JetBrainsMono\\ NFM,Noto_Color_Emoji:h14"
+	opt.number = true
+	opt.relativenumber = true
+	opt.tabstop = 2
+	opt.shiftwidth = 2
+	opt.expandtab = true
+	opt.autoindent = true
+	opt.wrap = false
+	opt.ignorecase = true
+	opt.smartcase = true
+	opt.termguicolors = true
+	opt.background = "dark"
+	opt.signcolumn = "yes"
+	opt.cursorline = true
+	opt.backspace = "indent,eol,start"
+	opt.clipboard:append("unnamedplus")
+	opt.splitright = true
+	opt.splitbelow = true
+      '';
     };
     kitty = {
       enable = true;
