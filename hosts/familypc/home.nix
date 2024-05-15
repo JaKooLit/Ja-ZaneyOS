@@ -180,7 +180,7 @@ in
         vimAlias = true;
         vimdiffAlias = true;
         withNodeJs = true;
-        extraPackages = with pkgs; [ lua-language-server ];
+        extraPackages = with pkgs; [ lua-language-server go cargo ];
         plugins = with pkgs.vimPlugins; [
           alpha-nvim
           auto-session
