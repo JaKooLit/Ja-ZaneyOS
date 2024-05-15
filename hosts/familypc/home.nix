@@ -185,6 +185,7 @@ in
       plugins = with pkgs.vimPlugins; [
         alpha-nvim
         auto-session
+        bufferline-nvim
         nvim-treesitter.withAllGrammars
 	      lualine-nvim
       	nvim-web-devicons
