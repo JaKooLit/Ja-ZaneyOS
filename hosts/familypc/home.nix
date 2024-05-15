@@ -199,6 +199,7 @@ in
         cmp_luasnip
         cmp-nvim-lsp
 	      telescope-nvim
+        nvim-tree-lua
         telescope-fzf-native-nvim
         vim-tmux-navigator
       ];
@@ -208,6 +209,7 @@ in
         ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
         ${builtins.readFile ../../config/nvim/plugins/lsp.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
+        ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
         require("Comment").setup()
         require("lualine").setup({
