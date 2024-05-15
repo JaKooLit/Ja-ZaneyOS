@@ -190,6 +190,7 @@ in
         indent-blankline-nvim
         nvim-treesitter.withAllGrammars
 	      lualine-nvim
+        nvim-autopairs
       	nvim-web-devicons
         nvim-cmp
         cmp-buffer
@@ -214,6 +215,7 @@ in
         ${builtins.readFile ../../config/nvim/options.lua}
         ${builtins.readFile ../../config/nvim/keymaps.lua}
         ${builtins.readFile ../../config/nvim/plugins/alpha.lua}
+        ${builtins.readFile ../../config/nvim/plugins/autopairs.lua}
         ${builtins.readFile ../../config/nvim/plugins/auto-session.lua}
         ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
         ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
