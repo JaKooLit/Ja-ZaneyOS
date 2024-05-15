@@ -183,6 +183,7 @@ in
         lua-language-server
       ];
       plugins = with pkgs.vimPlugins; [
+        alpha-nvim
         nvim-treesitter.withAllGrammars
 	      lualine-nvim
       	nvim-web-devicons
@@ -193,23 +194,18 @@ in
         }
         plenary-nvim
         neodev-nvim
-        nvim-cmp
-        nvim-lspconfig
         luasnip
-        cmp_luasnip
-        cmp-nvim-lsp
 	      telescope-nvim
         nvim-tree-lua
         telescope-fzf-native-nvim
         vim-tmux-navigator
       ];
       extraLuaConfig = ''
-        ${builtins.readFile ../../config/nvim/options.lua}
         ${builtins.readFile ../../config/nvim/keymaps.lua}
-        ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
-        ${builtins.readFile ../../config/nvim/plugins/lsp.lua}
-        ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
+        ${builtins.readFile ../../config/nvim/options.lua}
+        ${builtins.readFile ../../config/nvim/plugins/alpha.lua}
         ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
+        ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
         require("Comment").setup()
         require("lualine").setup({
