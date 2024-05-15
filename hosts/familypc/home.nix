@@ -199,6 +199,7 @@ in
         friendly-snippets
         lspkind-nvim
         comment-nvim
+        nvim-ts-context-commentstring
         {
           plugin = dracula-nvim;
           config = "colorscheme dracula";
@@ -217,13 +218,13 @@ in
         ${builtins.readFile ../../config/nvim/plugins/alpha.lua}
         ${builtins.readFile ../../config/nvim/plugins/autopairs.lua}
         ${builtins.readFile ../../config/nvim/plugins/auto-session.lua}
+        ${builtins.readFile ../../config/nvim/plugins/comment.lua}
         ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
         ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
         require("ibl").setup()
         require("bufferline").setup{}
-        require("Comment").setup()
         require("lualine").setup({
           icons_enabled = true,
           theme = 'dracula',
