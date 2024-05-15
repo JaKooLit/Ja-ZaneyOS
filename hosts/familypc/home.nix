@@ -194,6 +194,7 @@ in
         plenary-nvim
         neodev-nvim
         nvim-cmp
+        nvim-lspconfig
         luasnip
         cmp_luasnip
         cmp-nvim-lsp
@@ -205,6 +206,7 @@ in
         ${builtins.readFile ../../config/nvim/options.lua}
         ${builtins.readFile ../../config/nvim/keymaps.lua}
         ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
+        ${builtins.readFile ../../config/nvim/plugins/lsp.lua}
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
         require("Comment").setup()
