@@ -182,7 +182,16 @@ in
         withNodeJs = true;
         extraPackages = with pkgs; [
           lua-language-server
-          go
+          gopls
+          xclip
+          wl-clipboard
+          luajitPackages.lua-lsp
+          nil
+          rust-analyzer
+          nodePackages.bash-language-server
+          yaml-language-server
+          pyright
+          marksman
         ];
         plugins = with pkgs.vimPlugins; [
           alpha-nvim
@@ -217,8 +226,6 @@ in
           nvim-tree-lua
           telescope-fzf-native-nvim
           vim-tmux-navigator
-          mason-nvim
-          mason-lspconfig-nvim
         ];
         extraLuaConfig = ''
           ${builtins.readFile ../../config/nvim/options.lua}
@@ -230,7 +237,6 @@ in
           ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
           ${builtins.readFile ../../config/nvim/plugins/lsp.lua}
           ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
-          ${builtins.readFile ../../config/nvim/plugins/mason.lua}
           ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
           ${builtins.readFile ../../config/nvim/plugins/todo-comments.lua}
           ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
