@@ -26,7 +26,7 @@ mason_lspconfig.setup({
     "taplo",
     "tailwindcss",
     "yamlls",
-    "nil_ls",
+    "rnix",
     "rust_analyzer",
     "sqlls",
     "tsserver",
