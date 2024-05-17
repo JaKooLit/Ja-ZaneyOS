@@ -4,7 +4,7 @@
 
 ZaneyOS is a simple way of reproducing my configuration on any NixOS system. This includes the wallpaper, scripts, applications, config files, and more.
 
-<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/config/home/files/media/demo.jpg" />
+<img align="center" width="80%" src="https://gitlab.com/Zaney/zaneyos/-/raw/main/config/demo.png" />
 
 </div>
 
@@ -13,7 +13,7 @@ ZaneyOS is a simple way of reproducing my configuration on any NixOS system. Thi
 
 #### 🍖 Requirements
 - You must be running on NixOS.
-- Must have installed using GPT & UEFI.
+- Must have installed using GPT & UEFI. Systemd-boot is what is supported, for GRUB you will have to brave the internet for a how-to. ☺️
 - Manually editing options.nix file in hosts/<yourhostname> folder.
 
 #### 🎹 Pipewire, Spotify, & Notification Menu Controls

@@ -238,6 +238,9 @@ in
         telescope-fzf-native-nvim
         vim-tmux-navigator
       ];
+      extraVimConfig = ''
+        set noemoji
+      '';
       extraLuaConfig = ''
         ${builtins.readFile ../../config/nvim/options.lua}
         ${builtins.readFile ../../config/nvim/keymaps.lua}
