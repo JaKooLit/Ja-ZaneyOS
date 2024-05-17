@@ -45,6 +45,10 @@ in
     source = ../../config/wallpapers;
     recursive = true;
   };
+  home.file.".config/wlogout/icons" = {
+    source = ../../config/wlogout;
+    recursive = true;
+  };
   home.file.".local/share/fonts" = {
     source = ../../config/fonts;
     recursive = true;
