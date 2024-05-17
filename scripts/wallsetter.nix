@@ -3,6 +3,9 @@
 pkgs.writeShellScriptBin "wallsetter" ''
   WALLPAPER=$(find /home/${username}/Pictures/Wallpapers -name '*' | awk '!/.git/' | tail -n +2 | shuf -n 1)
   PREVIOUS=$WALLPAPER
+  if [ "$WALLPAPER" == "$PREVIOUS" ]; then
+      WALLPAPER=$(find /home/${username}/Pictures/Wallpapers -name '*' | awk '!/.git/' | tail -n +2 | shuf -n 1)
+  fi
   if [ -d /home/${username}/Pictures/Wallpapers ]; then
     num_files=$(ls -1 /home/${username}/Pictures/Wallpapers | wc -l)
 
