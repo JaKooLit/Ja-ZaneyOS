@@ -132,6 +132,7 @@ with lib;
                 bind = ${modifier},Return,exec,${terminal}
                 bind = ${modifier}SHIFT,Return,exec,wofi
                 bind = ${modifier}SHIFT,W,exec,web-search
+                bind = ${modifier}ALT,W,exec,wallsetter
                 bind = ${modifier}SHIFT,N,exec,swaync-client -rs
                 bind = ${modifier},W,exec,${browser}
                 bind = ${modifier},E,exec,emopicker9000
