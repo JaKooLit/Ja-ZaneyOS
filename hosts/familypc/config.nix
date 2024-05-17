@@ -119,9 +119,9 @@ in
       lolcat
       neofetch
       htop
-      btop
       libvirt
       lxqt.lxqt-policykit
+      mangohud
       lm_sensors
       unzip
       unrar
@@ -130,6 +130,8 @@ in
       v4l-utils
       ydotool
       wl-clipboard
+      lm_sensors
+      pciutils
       socat
       cowsay
       ripgrep
@@ -198,6 +200,10 @@ in
         layout = "us";
         variant = "";
       };
+    };
+    smartd = {
+      enable = true;
+      autodetect = true;
     };
     libinput.enable = true;
     openssh.enable = true;
