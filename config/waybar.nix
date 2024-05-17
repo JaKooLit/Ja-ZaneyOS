@@ -330,7 +330,7 @@ with lib;
               ''''
           }
           margin: 0px;
-          padding: 0px 30px 0px 15px;
+          padding: 0px 15px 0px 30px;
           border-radius: 0px 0px 0px 40px;
         }
       ''
