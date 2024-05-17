@@ -128,7 +128,7 @@ with lib;
           tooltip = false;
           format = "";
           # exec = "rofi -show drun";
-          on-click = "sleep 0.1 && rofi-launcher";
+          on-click = "sleep 0.1 && wofi";
         };
         "custom/hyprbindings" = {
           tooltip = false;

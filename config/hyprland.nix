@@ -33,6 +33,14 @@ with lib;
       in
       concatStrings [
         ''
+                exec-once = dbus-update-activation-environment --systemd --all
+                exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+                exec-once = swww init
+                exec-once = waybar
+                exec-once = swaync
+                exec-once = nm-applet --indicator
+                exec-once = lxqt-policykit-agent
+                exec-once = swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg
                 monitor=,preferred,auto,1
                 ${extraMonitorSettings}
                 general {
@@ -47,7 +55,7 @@ with lib;
 
                 input {
                   kb_layout = us
-          	kb_options = grp:alt_shift_toggle
+          	      kb_options = grp:alt_shift_toggle
                   kb_options=caps:super
                   follow_mouse = 1
                   touchpad {
@@ -67,6 +75,7 @@ with lib;
                 env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
                 env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
                 env = MOZ_ENABLE_WAYLAND, 1
+                windowrule=noborder,^(wofi)$
                 gestures {
                   workspace_swipe = true
                   workspace_swipe_fingers = 3
@@ -113,14 +122,6 @@ with lib;
                     color = rgba(${theme.base0A}ff)
                   }
                 }
-                exec-once = dbus-update-activation-environment --systemd --all
-                exec-once = systemctl --user import-environment QT_QPA_PLATFORMTHEME WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-                exec-once = swww init
-                exec-once = waybar
-                exec-once = swaync
-                exec-once = nm-applet --indicator
-                exec-once = lxqt-policykit-agent
-                exec-once = swww img /home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg
                 dwindle {
                   pseudotile = true
                   preserve_split = true
