@@ -415,13 +415,13 @@ in
       settings = {
         general = {
           disable_loading_bar = true;
-          grace = 300;
+          grace = 10;
           hide_cursor = true;
           no_fade_in = false;
         };
         background = [
           {
-            path = "/home/${username}/.config/wallpapers/zaney-wallpaper.jpg";
+            path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
             blur_passes = 3;
             blur_size = 8;
           }

@@ -8,9 +8,6 @@
   ...
 }:
 
-let
-  inherit (import ./variables.nix) browser;
-in
 {
   imports = [
     ./hardware.nix
@@ -96,6 +93,10 @@ in
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true;
       dedicatedServer.openFirewall = true;
+    };
+    thunar = {
+      enable = true;
+      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
     };
   };
 
@@ -246,9 +247,9 @@ in
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
-  security.rtkit.enable = true;
 
   # Security / Polkit
+  security.rtkit.enable = true;
   security.polkit.enable = true;
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
