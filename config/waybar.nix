@@ -188,7 +188,7 @@ with lib;
     ];
     style = concatStrings [
       ''
-        {
+        * {
           font-size: 16px;
           border-radius: 0px;
           border: none;
