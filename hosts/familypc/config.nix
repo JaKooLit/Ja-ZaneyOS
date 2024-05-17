@@ -91,14 +91,12 @@ in
       enableSSHSupport = true;
     };
     virt-manager.enable = true;
-  };
-
-  # Steam Configuration
-  programs.steam = {
-    enable = true;
-    gamescopeSession.enable = true;
-    remotePlay.openFirewall = true;
-    dedicatedServer.openFirewall = true;
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true;
+      dedicatedServer.openFirewall = true;
+    };
   };
 
   nixpkgs.config.allowUnfree = true;
@@ -195,7 +193,7 @@ in
         wayland.enable = true;
         theme = "sugar-dark";
       };
-      desktopManager.cinnamon.enable = true;
+      desktopManager.cinnamon.enable = false;
       xkb = {
         layout = "us";
         variant = "";

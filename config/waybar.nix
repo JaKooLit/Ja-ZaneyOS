@@ -28,12 +28,13 @@ with lib;
           "pulseaudio"
           "cpu"
           "memory"
+          "idle_inhibitor"
         ];
         modules-right = [
           "custom/hyprbindings"
-          "idle_inhibitor"
           "custom/themeselector"
           "custom/notification"
+          "custom/exit"
           "battery"
           "tray"
           "clock"
@@ -52,10 +53,10 @@ with lib;
         "clock" = {
           format = if clock24h == true then '' {:L%H:%M}'' else '' {:L%I:%M %p}'';
           tooltip = true;
-          tooltip-format = "<big>{:%A, %d.%B %Y }</big><tt><br><small>{calendar}</small></tt>";
+          tooltip-format = "<big>{:%A, %d.%B %Y }</big>\n<tt><small>{calendar}</small></tt>";
         };
         "hyprland/window" = {
-          max-length = 25;
+          max-length = 22;
           separate-outputs = false;
           rewrite = {
             "" = " 🙈 No Windows? ";
@@ -115,7 +116,7 @@ with lib;
         };
         "custom/themeselector" = {
           tooltip = false;
-          format = "";
+          format = "󰉼";
           on-click = "sleep 0.1 && theme-selector";
         };
         "custom/exit" = {
@@ -131,7 +132,7 @@ with lib;
         };
         "custom/hyprbindings" = {
           tooltip = false;
-          format = " Bindings";
+          format = "";
           on-click = "sleep 0.1 && list-hypr-bindings";
         };
         "idle_inhibitor" = {
@@ -192,7 +193,7 @@ with lib;
           font-size: 16px;
           border-radius: 0px;
           border: none;
-          font-family: JetBrainsMono Nerd Font, Font Awesome, sans-serif;
+          font-family: JetBrainsMono Nerd Font Mono;
           min-height: 0px;
         }
           window#waybar {
@@ -201,11 +202,12 @@ with lib;
         #workspaces {
           color: #${palette.base00};
           background: #${palette.base01};
-          margin: 5px 5px;
+          margin: 4px 4px;
           padding: 8px 5px;
           border-radius: 16px;
         }
         #workspaces button {
+          font-weight: bold;
           padding: 0px 5px;
           margin: 0px 3px;
           border-radius: 16px;
@@ -224,8 +226,9 @@ with lib;
           transition: ${betterTransition};
         }
         #workspaces button.active {
+          font-weight: bold;
           padding: 0px 5px;
-          margin: 4px 3px;
+          margin: 0px 3px;
           border-radius: 16px;
           color: #${palette.base00};
           background: linear-gradient(45deg, #${palette.base0E}, #${palette.base0F}, #${palette.base0D}, #${palette.base09});
@@ -243,6 +246,7 @@ with lib;
           min-width: 40px;
         }
         #workspaces button:hover {
+          font-weight: bold;
           border-radius: 16px;
           color: #${palette.base00};
           background: linear-gradient(45deg, #${palette.base0E}, #${palette.base0F}, #${palette.base0D}, #${palette.base09});
@@ -285,11 +289,11 @@ with lib;
         tooltip label {
           color: #${palette.base07};
         }
-        #window, #pulseaudio, #cpu, #memory {
+        #window, #pulseaudio, #cpu, #memory, #idle_inhibitor {
           font-weight: bold;
-          margin: 5px 0px;
+          margin: 4px 0px;
           margin-left: 7px;
-          padding: 0 18px;
+          padding: 0px 18px;
           color: #${palette.base05};
           background: #${palette.base01};
           border-radius: 24px 10px 24px 10px;
@@ -299,20 +303,21 @@ with lib;
           background: #${palette.base01};
           font-size: 28px;
           margin: 0px;
-          padding: 0px 35px 0px 15px;
+          padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 40px 0px;
         }
-        #custom-hyprbindings, #idle_inhibitor, #custom-themeselector, #battery,
-        #custom-notification, tray {
+        #custom-hyprbindings, #network, #custom-themeselector, #battery,
+        #custom-notification, #tray, #custom-exit {
           font-weight: bold;
           background: #${palette.base01};
           color: #${palette.base05};
-          margin: 5px 0px;
-          margin-left: 7px;
+          margin: 4px 0px;
+          margin-right: 7px;
           border-radius: 10px 24px 10px 24px;
-          padding: 0 18px;
+          padding: 0px 18px;
         }
         #clock {
+          font-weight: bold;
           color: #${palette.base00};
           background: linear-gradient(45deg, #${palette.base0C}, #${palette.base0F}, #${palette.base0B}, #${palette.base08});
           background-size: 300% 300%;
@@ -325,7 +330,7 @@ with lib;
               ''''
           }
           margin: 0px;
-          padding: 0px 35px 0px 15px;
+          padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 0px 40px;
         }
       ''
