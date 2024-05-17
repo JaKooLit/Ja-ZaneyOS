@@ -321,32 +321,45 @@ in
           font-weight: bold;
         }
         #window {
-          border-radius: 40px;
+          border-radius: 25px;
+          border: 2px solid #${palette.base08};
           background: #${palette.base00};
         }
         #input {
-          border-radius: 100px;
+          border-radius: 10px;
           border: 2px solid #${palette.base0B};
           margin: 20px;
           padding: 15px 25px;
           background: #${palette.base00};
           color: #${palette.base05};
         }
+        #inner-box {
+          border: none;
+          background-color: transparent;
+        }
         #outer-box {
+          border: none;
           font-weight: bold;
           font-size: 14px;
+        }
+        #text {
+          border: none;
         }
         #entry {
           margin: 10px 80px;
           padding: 20px 20px;
-          border-radius: 200px;
+          border-radius: 10px;
+          border: none;
         }
-        #entry:selected{
-          border: 2px solid #${palette.base0F};
-          background-color: #${palette.base0F};
-          color: #${palette.base00};
+        #entry:focus {
+          border: none;
         }
         #entry:hover {
+          border: none;
+        }
+        #entry:selected {
+          background-color: #${palette.base0F};
+          color: #${palette.base00};
         }
       '';
     };
