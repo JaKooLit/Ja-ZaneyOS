@@ -4,7 +4,7 @@
   gitEmail = "tylerzanekelley@gmail.com";
 
   # Base16 Theme
-  theme = "atelier-cave";
+  theme = "dracula";
 
   # Hyprland Settings
   borderAnim = true; # Enable / Disable Hyprland Border Animation

@@ -309,6 +309,7 @@ in
       enable = true;
       settings = {
         allow_images = true;
+        prompt = "Run Programs...";
         width = "25%";
         hide_scroll = true;
         term = "kitty";
@@ -325,6 +326,7 @@ in
         }
         #input {
           border-radius: 100px;
+          border: 2px solid #${palette.base0B};
           margin: 20px;
           padding: 15px 25px;
           background: #${palette.base00};
@@ -340,7 +342,8 @@ in
           border-radius: 200px;
         }
         #entry:selected{
-          background-color:#${palette.base0F};
+          border: 2px solid #${palette.base0F};
+          background-color: #${palette.base0F};
           color: #${palette.base00};
         }
         #entry:hover {
