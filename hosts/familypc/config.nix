@@ -160,7 +160,6 @@ in
       slurp
       gnome.file-roller
       swaynotificationcenter
-      rofi-wayland
       imv
       transmission-gtk
       distrobox

@@ -305,6 +305,48 @@ in
       enable = true;
       package = pkgs.starship;
     };
+    wofi = {
+      enable = true;
+      settings = {
+        allow_images = true;
+        width = "25%";
+        hide_scroll = true;
+        term = "kitty";
+        show = "drun";
+      };
+      style = ''
+        * {
+          font-family: JetBrainsMono Nerd Font Mono,monospace;
+          font-weight: bold;
+        }
+        #window {
+          border-radius: 40px;
+          background: #${palette.base00};
+        }
+        #input {
+          border-radius: 100px;
+          margin: 20px;
+          padding: 15px 25px;
+          background: #${palette.base00};
+          color: #${palette.base05};
+        }
+        #outer-box {
+          font-weight: bold;
+          font-size: 14px;
+        }
+        #entry {
+          margin: 10px 80px;
+          padding: 20px 20px;
+          border-radius: 200px;
+        }
+        #entry:selected{
+          background-color:#${palette.base0F};
+          color: #${palette.base00};
+        }
+        #entry:hover {
+        }
+      '';
+    };
     bash = {
       enable = true;
       enableCompletion = true;
