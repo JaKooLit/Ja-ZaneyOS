@@ -8,13 +8,19 @@ ZaneyOS is a simple way of reproducing my configuration on any NixOS system. Thi
 
 </div>
 
-> **This project has a [Wiki](https://zaney.org/zaneyos/). Please read it to find out information on subjects that you may need to learn more about!**
+> **This project has a [Wiki](https://zaney.org/zaneyos/). Find out how to use ZaneyOS here!**
 > **I have put a lot of effort into the [documentation](https://zaney.org/zaneyos/) so it should be accurate. However, please if you notice that something is wrong with it create an issue or reach out to me on Discord.**
+
+### Announcing ZaneyOS 2.0!
+
+With this new update of ZaneyOS it is a big rewrite of how things are being done. This update fixes many issues that you guys were facing. As well as makes things a little easier to understand. You now have a lot being stored inside the specific host directory, making use of modules, condensing seperate files down, etc. 
+My hope is that with this update your ability to grasp the flake and expand it to what you need is much improved. I want to thank everyone for being so supportive!
 
 #### 🍖 Requirements
 - You must be running on NixOS.
+- The zaneyos folder (this repo) is expected to be in your home directory.
 - Must have installed using GPT & UEFI. Systemd-boot is what is supported, for GRUB you will have to brave the internet for a how-to. ☺️
-- Manually editing options.nix file in hosts/<yourhostname> folder.
+- Manually editing your host specific files. The host is the specific computer your installing on.
 
 #### 🎹 Pipewire, Spotify, & Notification Menu Controls
 - We are using the latest and greatest audio solution for Linux. If you like listening to music Spotify comes pre-installed out of the box. Not to mention you will have media and volume controls in the notification center available in the top bar.
@@ -26,8 +32,8 @@ ZaneyOS is a simple way of reproducing my configuration on any NixOS system. Thi
 
 #### 🖥️ Multi Host & User Configuration
 - You can now define separate settings for different host machines and users!
-- Easily specify extra packages for your users in the users/users.nix file.
-- Easy to understand file structure where each host just has its generated hardware.nix file and option.nix file in a folder with the hostname as its title.
+- Easily specify extra packages for your users in the users.nix file.
+- Easy to understand file structure and simple, but encompassing, configuratiion.
 
 #### 👼 An Incredible Community Focused On Support
 - The entire idea of ZaneyOS is to make NixOS an approachable space that is actually a great community that you want to be in.
@@ -43,17 +49,11 @@ Please do yourself a favor and [read the wiki](https://zaney.org/zaneyos/).
 
 #### 📦 How To Install Packages?
 - You can search the [Nix Packages](https://search.nixos.org/packages?) & [Options](https://search.nixos.org/options?) pages for what a package may be named or if it has options available that take care of configuration hurdles you may face.
-- To add a package there are the packages.nix files located in config/system and config/home folders. One is for programs available system wide and the other for your users environment only.
-- You also have the option of easily adding packages to the option in the users/users.nix file for a specific user.
+- To add a package there are the sections for it in config.nix and users.nix in your host folder. One is for programs available system wide and the other for your users environment only.
 
 #### 🙋 Having Issues / Questions?
 - Please feel free to raise an issue on the repo, please label a feature request with the title beginning with [feature request], thank you!
 - Contact me on [Discord](https://discord.gg/2cRdBs8) as well, for a potentially faster response.
-
-#### ⚠️ Important Changes!
-- **ZaneyOS versioning is making its return!** You will now be able to see there are branches labeled as stable. The main branch is the development branch now.
-- The [Wiki](https://zaney.org/zaneyos/) has moved to [my website](https://zaney.org). This will make it so the documentation looks better and is more easily searched. You can click the search icon in the menu, on desktop, to search through any page in the entire website.
-- **Impermanence/persistence has been moved to only being sourced inside the hardware.nix file. If you want to use this feature then please read the Wiki page about how to implement it.**
 
 ### ⬇️ Install
 
@@ -99,21 +99,13 @@ Generate your hardware.nix like so:
 nixos-generate-config --show-hardware-config > hosts/<your-desired-hostname>/hardware.nix
 ```
 
-Run this to enable flakes and install the flake replacing hostname with whatever you put in the hosts/<your-desired-hostname>/options.nix file:
+Run this to enable flakes and install the flake replacing hostname with whatever you put as the hostname:
 
 ```
 NIX_CONFIG="experimental-features = nix-command flakes" 
 sudo nixos-rebuild switch --flake .#hostname
 ```
 
-If the username is new, the new user will have the password be set for them as *password*. If you want to change it run a command replacing password with whatever you want to be your password. You then need to copy the output that it gives you like below into your hashedPassword in the system.nix file.
-
-```
-  mkpasswd -m sha-512 password
-
-$6$YdPBODxytqUWXCYL$AHW1U9C6Qqkf6PZJI54jxFcPVm2sm/XWq3Z1qa94PFYz0FF.za9gl5WZL/z/g4nFLQ94SSEzMg5GMzMjJ6Vd7.
-```
-
-Now when you want to rebuild the configuration you have access to an alias called flake-rebuild that will rebuild the flake based of the flakeDir variable you set in options.nix!
+Now when you want to rebuild the configuration you have access to an alias called flake-rebuild that will rebuild the flake!
 
 Hope you enjoy!
