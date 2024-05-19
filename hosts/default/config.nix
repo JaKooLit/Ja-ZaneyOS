@@ -115,7 +115,6 @@
     [
       vim
       wget
-      handbrake
       git
       cmatrix
       lolcat
@@ -134,7 +133,6 @@
       wl-clipboard
       lm_sensors
       pciutils
-      ffmpeg
       socat
       cowsay
       ripgrep
@@ -185,6 +183,7 @@
 
   environment.variables = {
     ZANEYOS_VERSION = "2.0";
+    ZANEYOS = true;
   };
 
   # Services to start
