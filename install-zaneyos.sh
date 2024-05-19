@@ -67,7 +67,7 @@ sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flak
 
 echo "-----"
 
-installusername=$($USER)
+installusername=$(echo $USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
 echo "-----"
