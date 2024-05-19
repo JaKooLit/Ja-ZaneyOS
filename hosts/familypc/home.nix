@@ -423,7 +423,7 @@ in
       shellAliases = {
         sv = "sudo nvim";
         flake-rebuild = "nh os switch --hostname ${host} /home/${username}/zaneyos";
-        flake-update = "nh os switch --hostname ${host} --update";
+        flake-update = "nh os switch --hostname ${host} --update /home/${username}/zaneyos";
         gcCleanup = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
         ls = "lsd";
