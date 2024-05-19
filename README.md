@@ -10,8 +10,8 @@ ZaneyOS is a simple way of reproducing my configuration on any NixOS system. Thi
 
 </div>
 
-> **This project has a [Wiki](https://zaney.org/zaneyos/). Find out how to use ZaneyOS here!**
-> **I have put a lot of effort into the [documentation](https://zaney.org/zaneyos/) so it should be accurate. However, please if you notice that something is wrong with it create an issue or reach out to me on Discord.**
+> **This project has a [Wiki](https://zaney.org/zaneyos-2.0/). Find out how to use ZaneyOS here!**
+> **I have put a lot of effort into the [documentation](https://zaney.org/zaneyos-2.0/) so it should be accurate. However, please if you notice that something is wrong with it create an issue or reach out to me on Discord.**
 
 ### Announcing ZaneyOS 2.0!
 
@@ -43,9 +43,7 @@ My hope is that with this update your ability to grasp the flake and expand it t
 
 <div align="center">
 
-![](./config/home/files/media/demo.mp4)
-
-Please do yourself a favor and [read the wiki](https://zaney.org/zaneyos/).
+Please do yourself a favor and [read the wiki](https://zaney.org/zaneyos-2.0/).
 
 </div>
 
