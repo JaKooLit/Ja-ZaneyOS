@@ -185,6 +185,7 @@
 
   environment.variables = {
     ZANEYOS_VERSION = "2.0";
+    ZANEYOS = "true";
   };
 
   # Services to start

@@ -57,6 +57,7 @@ in
   home.file.".base16-themes".source = ../../config/base16-themes;
   home.file.".emoji".source = ../../config/emoji;
   home.file.".face.icon".source = ../../config/face.jpg;
+  home.file.".config/face.jpg".source = ../../config/face.jpg;
   home.file.".config/neofetch/config.conf".text = ''
     print_info() {
         prin "$(color 6)  ZaneyOS $ZANEYOS_VERSION"
@@ -396,9 +397,6 @@ in
           source $HOME/.bashrc-personal
         fi
       '';
-      sessionVariables = {
-        ZANEYOS = true;
-      };
       shellAliases = {
         sv = "sudo nvim";
         flake-rebuild = "nh os switch --hostname ${host} /home/${username}/zaneyos";
@@ -427,6 +425,16 @@ in
             path = "/home/${username}/Pictures/Wallpapers/zaney-wallpaper.jpg";
             blur_passes = 3;
             blur_size = 8;
+          }
+        ];
+        image = [
+          {
+            path = "/home/${username}/.config/face.jpg";
+            size = 150;
+            rounding = -1; # Negative means circle
+            position = "0, 200";
+            halign = "center";
+            valign = "center";
           }
         ];
         input-field = [
