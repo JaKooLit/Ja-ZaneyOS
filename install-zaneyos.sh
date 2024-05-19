@@ -60,11 +60,14 @@ git clone https://gitlab.com/zaney/zaneyos.git
 cd zaneyos || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
+git config --global user.name "installer"
+git config --global user.email "installer@gmail.com"
+git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
 echo "-----"
 
-installusername=$("$USER")
+installusername=$($USER)
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
 echo "-----"
