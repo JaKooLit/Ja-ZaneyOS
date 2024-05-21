@@ -184,7 +184,7 @@
     ];
 
   environment.variables = {
-    ZANEYOS_VERSION = "2.0";
+    ZANEYOS_VERSION = "2.1";
     ZANEYOS = "true";
   };
 

@@ -116,7 +116,7 @@ with lib;
         };
         "custom/themeselector" = {
           tooltip = false;
-          format = "󰉼";
+          format = "";
           on-click = "sleep 0.1 && theme-selector";
         };
         "custom/exit" = {
@@ -132,14 +132,14 @@ with lib;
         };
         "custom/hyprbindings" = {
           tooltip = false;
-          format = "";
+          format = "󱕴";
           on-click = "sleep 0.1 && list-hypr-bindings";
         };
         "idle_inhibitor" = {
           format = "{icon}";
           format-icons = {
-            activated = "";
-            deactivated = "";
+            activated = "";
+            deactivated = "";
           };
           tooltip = "true";
         };
