@@ -76,7 +76,8 @@ with lib;
                 env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
                 env = SDL_VIDEODRIVER, x11
                 env = MOZ_ENABLE_WAYLAND, 1
-                windowrule=noborder,^(wofi)$
+                windowrule = noborder,^(wofi)$
+                windowrule = center,^(wofi)$
                 gestures {
                   workspace_swipe = true
                   workspace_swipe_fingers = 3
