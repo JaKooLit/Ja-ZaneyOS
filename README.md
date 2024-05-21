@@ -69,7 +69,7 @@ Simple bug fixes.
 - Fixed Waybar icons to make them look a bit better.
 - Centered the Wofi window always.
 - Should have fixed some Steam issues, but I have had some crashes due to Steam so be aware of that.
-- The flake got an update.
+- The flake got an update, so all the packages are fresh.
 
 ### ⬇️ Install
 
