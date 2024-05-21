@@ -115,6 +115,7 @@
     [
       vim
       wget
+      killall
       git
       cmatrix
       lolcat
