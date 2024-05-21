@@ -78,6 +78,9 @@ with lib;
                 env = MOZ_ENABLE_WAYLAND, 1
                 windowrule = noborder,^(wofi)$
                 windowrule = center,^(wofi)$
+                windowrule = center,^(steam)$
+                windowrulev2 = stayfocused, title:^()$,class:^(steam)$
+                windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
                 gestures {
                   workspace_swipe = true
                   workspace_swipe_fingers = 3
