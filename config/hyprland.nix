@@ -74,6 +74,7 @@ with lib;
                 env = QT_QPA_PLATFORM, wayland
                 env = QT_WAYLAND_DISABLE_WINDOWDECORATION, 1
                 env = QT_AUTO_SCREEN_SCALE_FACTOR, 1
+                env = SDL_VIDEODRIVER, x11
                 env = MOZ_ENABLE_WAYLAND, 1
                 windowrule=noborder,^(wofi)$
                 gestures {

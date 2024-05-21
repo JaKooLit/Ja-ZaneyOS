@@ -12,7 +12,7 @@
 
   # Waybar Settings
   clock24h = false;
-  waybarAnimations = false;
+  waybarAnimations = true;
 
   # Program Options
   browser = "firefox"; # Set Default Browser
