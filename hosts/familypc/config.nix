@@ -116,6 +116,7 @@
       vim
       wget
       handbrake
+      killall
       git
       cmatrix
       lolcat
