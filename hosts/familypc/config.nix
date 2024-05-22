@@ -90,6 +90,12 @@
     popups = 12;
   };
 
+  qt = {
+    enable = true;
+    style = "adwaita-dark";
+    platformTheme = "gtk2";
+  };
+
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -235,6 +241,20 @@
     ZANEYOS = "true";
   };
 
+  # Extra Portal Configuration
+  xdg.portal = {
+    enable = true;
+    extraPortals = [ 
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal
+    ];
+  };
+
   # Services to start
   services = {
     xserver = {
@@ -256,6 +276,8 @@
       autodetect = true;
     };
     libinput.enable = true;
+    fstrim.enable = true;
+    gvfs.enable = true;
     openssh.enable = true;
     flatpak.enable = false;
     printing.enable = true;
@@ -293,8 +315,16 @@
     extraBackends = [ pkgs.sane-airscan ];
     disabledDefaultBackends = [ "escl" ];
   };
+
+  # Extra Logitech Support
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
+
+  # Bluetooth Support
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -318,6 +348,11 @@
       }
     })
   '';
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
   # Optimization settings and garbage collection automation
   nix = {

@@ -3,7 +3,6 @@
   inputs,
   username,
   host,
-  lib,
   ...
 }:
 let
@@ -100,16 +99,6 @@ in
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
       uris = [ "qemu:///system" ];
-    };
-  };
-
-  # Theme QT -> GTK
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
     };
   };
 
