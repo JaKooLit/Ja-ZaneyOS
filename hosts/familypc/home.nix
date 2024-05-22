@@ -1,18 +1,14 @@
 {
-  config,
   pkgs,
   inputs,
   username,
   host,
-  gtkThemeFromScheme,
   ...
 }:
 let
-  palette = config.colorScheme.palette;
   inherit (import ./variables.nix)
     gitUsername
     gitEmail
-    theme
     ;
 in
 {
@@ -21,12 +17,8 @@ in
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "23.11";
 
-  # Set The Colorscheme
-  colorScheme = inputs.nix-colors.colorSchemes."${theme}";
-
   # Import Program Configurations
   imports = [
-    inputs.nix-colors.homeManagerModules.default
     inputs.hyprland.homeManagerModules.default
     ../../config/hyprland.nix
     ../../config/swaync.nix
@@ -112,49 +104,6 @@ in
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
       uris = [ "qemu:///system" ];
-    };
-  };
-
-  # Configure Cursor Theme
-  home.pointerCursor = {
-    gtk.enable = true;
-    x11.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Ice";
-    size = 24;
-  };
-
-  # Theme GTK
-  gtk = {
-    enable = true;
-    font = {
-      name = "Ubuntu";
-      size = 12;
-      package = pkgs.ubuntu_font_family;
-    };
-    theme = {
-      name = "${config.colorScheme.slug}";
-      package = gtkThemeFromScheme { scheme = config.colorScheme; };
-    };
-    iconTheme = {
-      name = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-    };
-    gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-    gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme = 1;
-    };
-  };
-
-  # Theme QT -> GTK
-  qt = {
-    enable = true;
-    platformTheme = "gtk";
-    style = {
-      name = "adwaita-dark";
-      package = pkgs.adwaita-qt;
     };
   };
 
@@ -251,7 +200,6 @@ in
         nvim-ts-context-commentstring
         {
           plugin = dracula-nvim;
-          config = "colorscheme dracula";
         }
         plenary-nvim
         neodev-nvim
@@ -289,59 +237,17 @@ in
     kitty = {
       enable = true;
       package = pkgs.kitty;
-      font.name = "JetBrainsMono Nerd Font";
-      font.size = 16;
       settings = {
         scrollback_lines = 2000;
         wheel_scroll_min_lines = 1;
         window_padding_width = 4;
         confirm_os_window_close = 0;
-        background_opacity = "0.9";
       };
       extraConfig = ''
-        foreground #${palette.base05}
-        background #${palette.base00}
-        color0  #${palette.base03}
-        color1  #${palette.base08}
-        color2  #${palette.base0B}
-        color3  #${palette.base09}
-        color4  #${palette.base0D}
-        color5  #${palette.base0E}
-        color6  #${palette.base0C}
-        color7  #${palette.base06}
-        color8  #${palette.base04}
-        color9  #${palette.base08}
-        color10 #${palette.base0B}
-        color11 #${palette.base0A}
-        color12 #${palette.base0C}
-        color13 #${palette.base0E}
-        color14 #${palette.base0C}
-        color15 #${palette.base07}
-        color16 #${palette.base00}
-        color17 #${palette.base0F}
-        color18 #${palette.base0B}
-        color19 #${palette.base09}
-        color20 #${palette.base0D}
-        color21 #${palette.base0E}
-        color22 #${palette.base0C}
-        color23 #${palette.base06}
-        cursor  #${palette.base07}
-        cursor_text_color #${palette.base00}
-        selection_foreground #${palette.base01}
-        selection_background #${palette.base0D}
-        url_color #${palette.base0C}
-        active_border_color #${palette.base04}
-        inactive_border_color #${palette.base00}
-        bell_border_color #${palette.base03}
         tab_bar_style fade
         tab_fade 1
-        active_tab_foreground   #${palette.base04}
-        active_tab_background   #${palette.base00}
         active_tab_font_style   bold
-        inactive_tab_foreground #${palette.base07}
-        inactive_tab_background #${palette.base08}
         inactive_tab_font_style bold
-        tab_bar_background #${palette.base00}
       '';
     };
     starship = {
@@ -358,53 +264,6 @@ in
         term = "kitty";
         show = "drun";
       };
-      style = ''
-        * {
-          font-family: JetBrainsMono Nerd Font Mono,monospace;
-          font-weight: bold;
-        }
-        #window {
-          border-radius: 25px;
-          border: 2px solid #${palette.base08};
-          background: #${palette.base00};
-        }
-        #input {
-          border-radius: 10px;
-          border: 2px solid #${palette.base0B};
-          margin: 20px;
-          padding: 15px 25px;
-          background: #${palette.base00};
-          color: #${palette.base05};
-        }
-        #inner-box {
-          border: none;
-          background-color: transparent;
-        }
-        #outer-box {
-          border: none;
-          font-weight: bold;
-          font-size: 14px;
-        }
-        #text {
-          border: none;
-        }
-        #entry {
-          margin: 10px 80px;
-          padding: 20px 20px;
-          border-radius: 10px;
-          border: none;
-        }
-        #entry:focus {
-          border: none;
-        }
-        #entry:hover {
-          border: none;
-        }
-        #entry:selected {
-          background-color: #${palette.base0F};
-          color: #${palette.base00};
-        }
-      '';
     };
     bash = {
       enable = true;
@@ -456,7 +315,7 @@ in
             path = "/home/${username}/.config/face.jpg";
             size = 150;
             border_size = 4;
-            border_color = "rgb(${palette.base08})";
+            border_color = "rgb(FFFFFF)";
             rounding = -1; # Negative means circle
             position = "0, 200";
             halign = "center";
@@ -470,9 +329,9 @@ in
             monitor = "";
             dots_center = true;
             fade_on_empty = false;
-            font_color = "rgb(${palette.base05})";
-            inner_color = "rgb(${palette.base01})";
-            outer_color = "rgb(${palette.base00})";
+            font_color = "rgb(FFFFFF)";
+            inner_color = "rgb(000000)";
+            outer_color = "rgb(000000)";
             outline_thickness = 5;
             placeholder_text = "Password...";
             shadow_passes = 2;

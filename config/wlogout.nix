@@ -5,9 +5,6 @@
   ...
 }:
 
-let
-  palette = config.colorScheme.palette;
-in
 {
   programs.wlogout = {
     enable = true;
@@ -59,22 +56,22 @@ in
       	background-color: rgba(12, 12, 12, 0.1);
       }
       button {
-      	color: #${palette.base05};
+      	color: #f5f5f5;
         font-size:20px;
         background-repeat: no-repeat;
       	background-position: center;
       	background-size: 25%;
       	border-style: solid;
       	background-color: rgba(12, 12, 12, 0.3);
-      	border: 3px solid #${palette.base05};
+      	border: 3px solid #f5f5f5;
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
       button:focus,
       button:active,
       button:hover {
-        color: #${palette.base0E};
+        color: #0096FF;
         background-color: rgba(12, 12, 12, 0.5);
-        border: 3px solid #${palette.base0E};
+        border: 3px solid #0096FF;
       }
       #logout {
       	margin: 10px;
