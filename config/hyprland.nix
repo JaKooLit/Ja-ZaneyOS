@@ -9,7 +9,6 @@
 }:
 
 let
-  theme = config.colorScheme.palette;
   hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
   inherit (import ../hosts/${host}/variables.nix)
     browser
@@ -141,6 +140,7 @@ with lib;
                 bind = ${modifier},S,exec,screenshootin
                 bind = ${modifier},D,exec,discord
                 bind = ${modifier},O,exec,obs
+                bind = ${modifier},C,exec,hyprpicker
                 bind = ${modifier},G,exec,gimp
                 bind = ${modifier}SHIFT,G,exec,godot4
                 bind = ${modifier},T,exec,thunar
