@@ -1,7 +1,5 @@
 {
   config,
-  lib,
-  pkgs,
   ...
 }:
 
@@ -56,22 +54,22 @@
       	background-color: rgba(12, 12, 12, 0.1);
       }
       button {
-      	color: #f5f5f5;
+      	color: #${config.stylix.base16Scheme.base05};
         font-size:20px;
         background-repeat: no-repeat;
       	background-position: center;
       	background-size: 25%;
       	border-style: solid;
       	background-color: rgba(12, 12, 12, 0.3);
-      	border: 3px solid #f5f5f5;
+      	border: 3px solid #${config.stylix.base16Scheme.base05};
         box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       }
       button:focus,
       button:active,
       button:hover {
-        color: #0096FF;
+        color: #${config.stylix.base16Scheme.base0B};
         background-color: rgba(12, 12, 12, 0.5);
-        border: 3px solid #0096FF;
+        border: 3px solid #${config.stylix.base16Scheme.base0B};
       }
       #logout {
       	margin: 10px;
