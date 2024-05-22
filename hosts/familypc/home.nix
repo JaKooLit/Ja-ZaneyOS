@@ -3,6 +3,7 @@
   inputs,
   username,
   host,
+  lib,
   ...
 }:
 let
@@ -26,11 +27,6 @@ in
     ../../config/wlogout.nix
   ];
 
-  # Define Settings For Xresources
-  xresources.properties = {
-    "Xcursor.size" = 24;
-  };
-
   # Place Files Inside Home Directory
   home.file."Pictures/Wallpapers" = {
     source = ../../config/wallpapers;
@@ -52,18 +48,18 @@ in
   home.file.".config/face.jpg".source = ../../config/face.jpg;
   home.file.".config/neofetch/config.conf".text = ''
     print_info() {
-        prin "$(color 6)  ZaneyOS $ZANEYOS_VERSION"
-        info underline
-        info "$(color 7)  VER" kernel
-        info "$(color 2)  UP " uptime
-        info "$(color 4)  PKG" packages
-        info "$(color 6)  DE " de
-        info "$(color 5)  TER" term
-        info "$(color 3)  CPU" cpu
-        info "$(color 7)  GPU" gpu
-        info "$(color 5)  MEM" memory
-        prin " "
-        prin "$(color 1) $(color 2) $(color 3) $(color 4) $(color 5) $(color 6) $(color 7) $(color 8)"
+      prin "$(color 6)  ZaneyOS $ZANEYOS_VERSION"
+      info underline
+      info "$(color 7)  VER" kernel
+      info "$(color 2)  UP " uptime
+      info "$(color 4)  PKG" packages
+      info "$(color 6)  DE " de
+      info "$(color 5)  TER" term
+      info "$(color 3)  CPU" cpu
+      info "$(color 7)  GPU" gpu
+      info "$(color 5)  MEM" memory
+      prin " "
+      prin "$(color 1) $(color 2) $(color 3) $(color 4) $(color 5) $(color 6) $(color 7) $(color 8)"
     }
     distro_shorthand="on"
     memory_unit="gib"
@@ -104,6 +100,16 @@ in
     "org/virt-manager/virt-manager/connections" = {
       autoconnect = [ "qemu:///system" ];
       uris = [ "qemu:///system" ];
+    };
+  };
+
+  # Theme QT -> GTK
+  qt = {
+    enable = true;
+    platformTheme = "gtk";
+    style = {
+      name = "adwaita-dark";
+      package = pkgs.adwaita-qt;
     };
   };
 
@@ -315,7 +321,7 @@ in
             path = "/home/${username}/.config/face.jpg";
             size = 150;
             border_size = 4;
-            border_color = "rgb(FFFFFF)";
+            border_color = "rgb(${lib.stylix.colors.base08})";
             rounding = -1; # Negative means circle
             position = "0, 200";
             halign = "center";
@@ -329,9 +335,9 @@ in
             monitor = "";
             dots_center = true;
             fade_on_empty = false;
-            font_color = "rgb(FFFFFF)";
-            inner_color = "rgb(000000)";
-            outer_color = "rgb(000000)";
+            font_color = "rgb(${lib.stylix.colors.base08})";
+            inner_color = "rgb(${lib.stylix.colors.base01})";
+            outer_color = "rgb(${lib.stylix.colors.base00})";
             outline_thickness = 5;
             placeholder_text = "Password...";
             shadow_passes = 2;

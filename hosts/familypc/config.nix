@@ -50,6 +50,7 @@
   stylix.polarity = "dark";
   stylix.cursor.package = pkgs.bibata-cursors;
   stylix.cursor.name = "Bibata-Modern-Ice";
+  stylix.cursor.size = 24;
   stylix.fonts = {
     monospace = {
       package = pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];};
@@ -67,8 +68,8 @@
   stylix.fonts.sizes = {
     applications = 12;
     terminal = 15;
-    desktop = 10;
-    popups = 10;
+    desktop = 11;
+    popups = 12;
   };
 
   # Configure network proxy if necessary
