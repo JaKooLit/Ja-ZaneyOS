@@ -62,7 +62,7 @@
   '';
   home.file.".config/swaync/style.css".text = ''
     * {
-      font-family: JetBrains Nerd Font Mono;
+      font-family: JetBrainsMono Nerd Font Mono;
       font-weight: bold;
     }
     .control-center .notification-row:focus,
@@ -273,23 +273,6 @@
     }
     .widget-mpris-subtitle {
       font-size: 1.1rem
-    }
-    .widget-buttons-grid {
-      font-size: x-large;
-      padding: 5px;
-      margin: 10px 10px 5px 10px;
-      border-radius: 5px;
-      background: #${config.stylix.base16Scheme.base01};
-    }
-    .widget-buttons-grid>flowbox>flowboxchild>button {
-      margin: 3px;
-      background: #${config.stylix.base16Scheme.base00};
-      border-radius: 5px;
-      color: #${config.stylix.base16Scheme.base05};
-    }
-    .widget-buttons-grid>flowbox>flowboxchild>button:hover {
-      background: rgba(122, 162, 247, 1);
-      color: #${config.stylix.base16Scheme.base00};
     }
     .widget-menubar>box>.menu-button-bar>button {
       border: none;

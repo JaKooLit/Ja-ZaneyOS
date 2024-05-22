@@ -263,7 +263,7 @@ with lib;
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};
-          color: #${config.stylix.base16Scheme.base05};
+          color: #${config.stylix.base16Scheme.base00};
           margin: 4px 0px;
           margin-right: 7px;
           border-radius: 10px 24px 10px 24px;
