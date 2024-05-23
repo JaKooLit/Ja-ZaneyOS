@@ -19,3 +19,12 @@ Simple bug fixes.
 - Should have fixed some Steam issues, but I have had some crashes due to Steam so be aware of that.
 - The flake got an update, so all the packages are fresh.
 
+**ZaneyOS 2.2**
+
+This release has a big theming change as well as including the move back to rofi. 
+
+- Revert the switch from rofi to wofi. Rofi is just better.
+- Switch from Nix Colors to Stylix. It can build colorschemes from a wallpaper.
+- Simplified the notification center.
+- Improved emoji selection menu and options.
+- Adding fine-cmdline plugin for Neovim.

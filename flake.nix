@@ -11,6 +11,10 @@
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+    fine-cmdline = {
+      url = "github:VonHeikemen/fine-cmdline.nvim";
+      flake = false;
+    };
   };
 
   outputs =

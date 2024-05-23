@@ -17,6 +17,19 @@ in
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "23.11";
 
+  nixpkgs = {
+    overlays = [
+      (final: prev: {
+        vimPlugins = prev.vimPlugins // {
+          fine-cmdline-nvim = prev.vimUtils.buildVimPlugin {
+            name = "fine-cmdline";
+            src = inputs.fine-cmdline;
+          };
+        };
+      })
+    ];
+  };
+
   # Import Program Configurations
   imports = [
     inputs.hyprland.homeManagerModules.default
@@ -191,6 +204,7 @@ in
         bufferline-nvim
         dressing-nvim
         indent-blankline-nvim
+        fine-cmdline-nvim
         nvim-treesitter.withAllGrammars
         lualine-nvim
         nvim-autopairs
@@ -206,9 +220,6 @@ in
         lspkind-nvim
         comment-nvim
         nvim-ts-context-commentstring
-        {
-          plugin = dracula-nvim;
-        }
         plenary-nvim
         neodev-nvim
         luasnip
@@ -220,6 +231,7 @@ in
       ];
       extraConfig = ''
         set noemoji
+        nnoremap : <cmd>FineCmdline<CR>
       '';
       extraLuaConfig = ''
         ${builtins.readFile ../../config/nvim/options.lua}
