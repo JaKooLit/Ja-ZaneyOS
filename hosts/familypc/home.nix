@@ -21,7 +21,9 @@ in
   imports = [
     inputs.hyprland.homeManagerModules.default
     ../../config/hyprland.nix
-    ../../config/rofi.nix
+    ../../config/rofi/rofi.nix
+    ../../config/rofi/config-emoji.nix
+    ../../config/rofi/config-long.nix
     ../../config/swaync.nix
     ../../config/waybar.nix
     ../../config/wlogout.nix
