@@ -321,7 +321,7 @@ in
           background-color = mkLiteral "@selected";
           text-color = mkLiteral "@text-selected";
           cursor = mkLiteral "text";
-          placeholder = mkLiteral "🖥️ Search ";
+          placeholder = "🖥️ Search ";
           placeholder-color = mkLiteral "inherit";
         };
         "listbox" = {

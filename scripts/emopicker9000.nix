@@ -11,8 +11,8 @@ pkgs.writeShellScriptBin "emopicker9000" ''
   exit
   # # DATA # #
   😀 grinning face face smile happy joy :D grin
-  😃 grinning face with big eyes face happy joy haha :D :) smile funny
-  😄 grinning face with smiling eyes face happy joy funny haha laugh like :D :) smile
+  😃 grinning face with big eyes face happy joy haha :D smile funny
+  😄 grinning face with smiling eyes face happy joy funny haha laugh like :D smile
   😁 beaming face with smiling eyes face happy smile joy kawaii
   😆 grinning squinting face happy joy lol satisfied haha face glad XD laugh
   😅 grinning face with sweat face hot happy laugh sweat smile relief
@@ -20,7 +20,7 @@ pkgs.writeShellScriptBin "emopicker9000" ''
   😂 face with tears of joy face cry tears weep happy happytears haha
   🙂 slightly smiling face face smile
   🙃 upside down face face flipped silly smile
-  😉 winking face face happy mischievous secret ;) smile eye
+  😉 winking face face happy mischievous secret smile eye
   😊 smiling face with smiling eyes face smile happy flushed crush embarrassed shy joy
   😇 smiling face with halo face angel heaven halo
   🥰 smiling face with hearts face love like affection valentines infatuation crush hearts adore
@@ -72,11 +72,11 @@ pkgs.writeShellScriptBin "emopicker9000" ''
   😎 smiling face with sunglasses face cool smile summer beach sunglass
   🤓 nerd face face nerdy geek dork
   🧐 face with monocle face stuffy wealthy
-  😕 confused face face indifference huh weird hmmm :/
-  😟 worried face face concern nervous :(
+  😕 confused face face indifference huh weird hmmm
+  😟 worried face face concern nervous
   🙁 slightly frowning face face frowning disappointed sad upset
   ☹️  frowning face face sad upset frown
-  😮 face with open mouth face surprise impressed wow whoa :O
+  😮 face with open mouth face surprise impressed wow whoa
   😯 hushed face face woo shh
   😲 astonished face face xox surprised poisoned
   😳 flushed face face blush shy flattered
@@ -86,12 +86,12 @@ pkgs.writeShellScriptBin "emopicker9000" ''
   😨 fearful face face scared terrified nervous oops huh
   😰 anxious face with sweat face nervous sweat
   😥 sad but relieved face face phew sweat nervous
-  😢 crying face face tears sad depressed upset :'(
+  😢 crying face face tears sad depressed upset
   😭 loudly crying face face cry tears sad upset depressed
   😱 face screaming in fear face munch scared omg
   😖 confounded face face confused sick unwell oops :S
   😣 persevering face face sick no upset oops
-  😞 disappointed face face sad upset depressed :(
+  😞 disappointed face face sad upset depressed
   😓 downcast face with sweat face hot sad tired exercise
   😩 weary face face tired sleepy sad frustrated upset
   😫 tired face sick whine upset frustrated
@@ -1857,5 +1857,4 @@ pkgs.writeShellScriptBin "emopicker9000" ''
   🫧 bubbles soap fun carbonation sparkling
   🪪 identification card document
   🟰 heavy equals sign math
-  ( ͡° ͜ʖ ͡°) lenny face that face
 ''
