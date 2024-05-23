@@ -92,7 +92,7 @@
 
   qt = {
     enable = true;
-    style = "gtk2";
+    style = "adwaita-dark";
     platformTheme = "gtk2";
   };
 
