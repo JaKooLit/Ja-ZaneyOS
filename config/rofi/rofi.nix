@@ -16,11 +16,10 @@
         location = 0;
         font = "JetBrainsMono Nerd Font Mono 12";	
         drun-display-format = "{icon} {name}";
-        display-drun = "   Apps ";
-        display-run = "   Run ";
-        display-filebrowser = "   File ";
-        display-emoji = "   Emoji ";
-        hover-select = true;
+        display-drun = " Apps";
+        display-run = " Run";
+        display-filebrowser = " File";
+        display-emoji = " Emoji";
         me-select-entry = "MouseSecondary";
         me-accept-entry = "MousePrimary";
       };
@@ -51,6 +50,7 @@
 	        padding = mkLiteral "15px";
           enabled = true;
           orientation = mkLiteral "vertical";
+          border-radius = "25px";
           children = map mkLiteral [ "inputbar" "listbox" ];
           background-color = mkLiteral "transparent";
         };

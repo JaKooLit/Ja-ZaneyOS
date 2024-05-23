@@ -1,7 +1,7 @@
 { ... }:
 
 {
-  home.file.".emoji".text = ''
+  home.file.".config/.emoji".text = ''
     😀 grinning face face smile happy joy :D grin
     😃 grinning face with big eyes face happy joy haha :D :) smile funny
     😄 grinning face with smiling eyes face happy joy funny haha laugh like :D :) smile
