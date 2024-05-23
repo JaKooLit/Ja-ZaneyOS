@@ -8,9 +8,9 @@
   programs = {
     rofi = {
       enable = true;
-      package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji ]; };
+      package = pkgs.rofi-wayland;
       extraConfig = {
-        modi = "drun,emoji,filebrowser,run";
+        modi = "drun,filebrowser,run";
         show-icons = true;
         icon-theme = "Papirus";
         location = 0;
@@ -19,9 +19,6 @@
         display-drun = " Apps";
         display-run = " Run";
         display-filebrowser = " File";
-        display-emoji = " Emoji";
-        me-select-entry = "MouseSecondary";
-        me-accept-entry = "MousePrimary";
       };
       theme = let inherit (config.lib.formats.rasi) mkLiteral; in {
         "*" = {
@@ -50,7 +47,6 @@
 	        padding = mkLiteral "15px";
           enabled = true;
           orientation = mkLiteral "vertical";
-          border-radius = "25px";
           children = map mkLiteral [ "inputbar" "listbox" ];
           background-color = mkLiteral "transparent";
         };
