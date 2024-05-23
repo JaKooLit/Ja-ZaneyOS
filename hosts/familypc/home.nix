@@ -20,6 +20,7 @@ in
   # Import Program Configurations
   imports = [
     inputs.hyprland.homeManagerModules.default
+    ../../config/emoji.nix
     ../../config/hyprland.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
