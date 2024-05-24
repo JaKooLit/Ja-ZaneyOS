@@ -6,6 +6,10 @@
   ...
 }:
 let
+  finecmdline = pkgs.vimUtils.buildVimPlugin {
+    name = "fine-cmdline";
+    src = inputs.fine-cmdline;
+  };
   inherit (import ./variables.nix)
     gitUsername
     gitEmail
@@ -16,19 +20,6 @@ in
   home.username = "${username}";
   home.homeDirectory = "/home/${username}";
   home.stateVersion = "23.11";
-
-  nixpkgs = {
-    overlays = [
-      (final: prev: {
-        vimPlugins = prev.vimPlugins // {
-          fine-cmdline-nvim = prev.vimUtils.buildVimPlugin {
-            name = "fine-cmdline";
-            src = inputs.fine-cmdline;
-          };
-        };
-      })
-    ];
-  };
 
   # Import Program Configurations
   imports = [
@@ -204,7 +195,8 @@ in
         bufferline-nvim
         dressing-nvim
         indent-blankline-nvim
-        fine-cmdline-nvim
+        nui-nvim
+        finecmdline
         nvim-treesitter.withAllGrammars
         lualine-nvim
         nvim-autopairs
@@ -246,6 +238,7 @@ in
         ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
         ${builtins.readFile ../../config/nvim/plugins/todo-comments.lua}
         ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
+        ${builtins.readFile ../../config/nvim/plugins/fine-cmdline.lua}
         require("ibl").setup()
         require("bufferline").setup{}
         require("lualine").setup({

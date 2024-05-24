@@ -166,7 +166,6 @@
     [
       vim
       wget
-      handbrake
       killall
       git
       cmatrix
@@ -184,7 +183,6 @@
       v4l-utils
       ydotool
       wl-clipboard
-      lm_sensors
       pciutils
       ffmpeg
       socat
