@@ -9,11 +9,7 @@
 }:
 let
   palette = config.colorScheme.palette;
-  inherit (import ./variables.nix)
-    gitUsername
-    gitEmail
-    theme
-    ;
+  inherit (import ./variables.nix) gitUsername gitEmail theme;
 in
 {
   # Home Manager Settings
@@ -90,7 +86,6 @@ in
     early_exit=true
     fill_shape=false
   '';
-
 
   # Install & Configure Git
   programs.git = {
@@ -407,7 +402,7 @@ in
         la = "lsd -a";
         lal = "lsd -al";
         ".." = "cd ..";
-        neofetch="neofetch --ascii ~/.config/ascii-neofetch";
+        neofetch = "neofetch --ascii ~/.config/ascii-neofetch";
       };
     };
     home-manager.enable = true;

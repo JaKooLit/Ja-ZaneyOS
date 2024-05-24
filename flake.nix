@@ -23,13 +23,6 @@
       system = "x86_64-linux";
       host = "familypc";
       username = "zaney";
-
-      pkgs = import nixpkgs {
-        inherit system;
-        config = {
-          allowUnfree = true;
-        };
-      };
     in
     {
       nixosConfigurations = {

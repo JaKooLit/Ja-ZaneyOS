@@ -10,10 +10,7 @@ let
     name = "fine-cmdline";
     src = inputs.fine-cmdline;
   };
-  inherit (import ./variables.nix)
-    gitUsername
-    gitEmail
-    ;
+  inherit (import ./variables.nix) gitUsername gitEmail;
 in
 {
   # Home Manager Settings
@@ -85,7 +82,6 @@ in
     early_exit=true
     fill_shape=false
   '';
-
 
   # Install & Configure Git
   programs.git = {
@@ -292,7 +288,7 @@ in
         la = "lsd -a";
         lal = "lsd -al";
         ".." = "cd ..";
-        neofetch="neofetch --ascii ~/.config/ascii-neofetch";
+        neofetch = "neofetch --ascii ~/.config/ascii-neofetch";
       };
     };
     home-manager.enable = true;
