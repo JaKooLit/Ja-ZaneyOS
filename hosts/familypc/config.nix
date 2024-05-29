@@ -2,7 +2,6 @@
   config,
   pkgs,
   host,
-  inputs,
   username,
   options,
   ...
@@ -20,85 +19,87 @@
     ../../modules/local-hardware-clock.nix
   ];
 
-  # Kernel
-  boot.kernelPackages = pkgs.linuxPackages;
-  # boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernel.sysctl = {
-    "vm.max_map_count" = 2147483642;
+  boot = {
+    # Kernel
+    kernelPackages = pkgs.linuxPackages_zen;
+    # This is for OBS Virtual Cam Support
+    kernelModules = [ "v4l2loopback" ];
+    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    # Needed For Some Steam Games
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
+    # Bootloader.
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    # Make /tmp a tmpfs
+    tmp = {
+      useTmpfs = false;
+      tmpfsSize = "30%";
+    };
+    # Appimage Support
+    binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+      magicOrExtension = ''\x7fELF....AI\x02'';
+    };
   };
-  boot.tmp.useTmpfs = false;
-  boot.tmp.tmpfsSize = "30%";
-  boot.binfmt.registrations.appimage = {
-    wrapInterpreterInShell = false;
-    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-    recognitionType = "magic";
-    offset = 0;
-    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-    magicOrExtension = ''\x7fELF....AI\x02'';
-  };
-
-  # This is for OBS Virtual Cam Support - v4l2loopback setup
-  boot.kernelModules = [ "v4l2loopback" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
 
   # Styling Options
-  stylix.image = ../../config/wallpapers/zaney-wallpaper.jpg;
-  # stylix.base16Scheme = {
-  #   base00 = "232136";
-  #   base01 = "2a273f";
-  #   base02 = "393552";
-  #   base03 = "6e6a86";
-  #   base04 = "908caa";
-  #   base05 = "e0def4";
-  #   base06 = "e0def4";
-  #   base07 = "56526e";
-  #   base08 = "eb6f92";
-  #   base09 = "f6c177";
-  #   base0A = "ea9a97";
-  #   base0B = "3e8fb0";
-  #   base0C = "9ccfd8";
-  #   base0D = "c4a7e7";
-  #   base0E = "f6c177";
-  #   base0F = "56526e";
-  # };
-  stylix.polarity = "dark";
-  stylix.cursor.package = pkgs.bibata-cursors;
-  stylix.cursor.name = "Bibata-Modern-Ice";
-  stylix.cursor.size = 24;
-  stylix.fonts = {
-    monospace = {
-      package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
-      name = "JetBrainsMono Nerd Font Mono";
+  stylix = {
+    image = ../../config/wallpapers/zaney-wallpaper.jpg;
+    # base16Scheme = {
+    #   base00 = "232136";
+    #   base01 = "2a273f";
+    #   base02 = "393552";
+    #   base03 = "6e6a86";
+    #   base04 = "908caa";
+    #   base05 = "e0def4";
+    #   base06 = "e0def4";
+    #   base07 = "56526e";
+    #   base08 = "eb6f92";
+    #   base09 = "f6c177";
+    #   base0A = "ea9a97";
+    #   base0B = "3e8fb0";
+    #   base0C = "9ccfd8";
+    #   base0D = "c4a7e7";
+    #   base0E = "f6c177";
+    #   base0F = "56526e";
+    # };
+    polarity = "dark";
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
+    cursor.size = 24;
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Sans";
+      };
+      serif = {
+        package = pkgs.dejavu_fonts;
+        name = "DejaVu Serif";
+      };
+      sizes = {
+        applications = 12;
+        terminal = 15;
+        desktop = 11;
+        popups = 12;
+      };
     };
-    sansSerif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Sans";
-    };
-    serif = {
-      package = pkgs.dejavu_fonts;
-      name = "DejaVu Serif";
-    };
-  };
-  stylix.fonts.sizes = {
-    applications = 12;
-    terminal = 15;
-    desktop = 11;
-    popups = 12;
   };
 
   qt = {
     enable = true;
-    style = "adwaita-dark";
+    style = "gtk2";
     platformTheme = "gtk2";
   };
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -221,7 +222,7 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "CaskaydiaMono" ]; })
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       noto-fonts-emoji
       noto-fonts-cjk
       font-awesome
