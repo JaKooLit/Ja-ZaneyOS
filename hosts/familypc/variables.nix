@@ -3,9 +3,6 @@
   gitUsername = "Tyler Kelley";
   gitEmail = "tylerzanekelley@gmail.com";
 
-  # Base16 Theme
-  theme = "tokyo-night-storm";
-
   # Hyprland Settings
   borderAnim = true; # Enable / Disable Hyprland Border Animation
   extraMonitorSettings = "";
