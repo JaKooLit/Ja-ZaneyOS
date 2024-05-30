@@ -31,7 +31,6 @@ with lib;
         ];
         modules-right = [
           "custom/hyprbindings"
-          "custom/themeselector"
           "custom/notification"
           "custom/exit"
           "battery"
@@ -112,11 +111,6 @@ with lib;
             ];
           };
           on-click = "sleep 0.1 && pavucontrol";
-        };
-        "custom/themeselector" = {
-          tooltip = false;
-          format = "";
-          on-click = "sleep 0.1 && theme-selector";
         };
         "custom/exit" = {
           tooltip = false;
@@ -259,7 +253,7 @@ with lib;
           padding: 0px 30px 0px 15px;
           border-radius: 0px 0px 40px 0px;
         }
-        #custom-hyprbindings, #network, #custom-themeselector, #battery,
+        #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
           font-weight: bold;
           background: #${config.stylix.base16Scheme.base0F};

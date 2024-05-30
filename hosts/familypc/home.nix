@@ -45,7 +45,6 @@ in
     recursive = true;
   };
   home.file.".config/ascii-neofetch".source = ../../config/ascii-neofetch;
-  home.file.".base16-themes".source = ../../config/base16-themes;
   home.file.".face.icon".source = ../../config/face.jpg;
   home.file.".config/face.jpg".source = ../../config/face.jpg;
   home.file.".config/neofetch/config.conf".text = ''
@@ -126,12 +125,6 @@ in
     (import ../../scripts/emopicker9000.nix { inherit pkgs; })
     (import ../../scripts/task-waybar.nix { inherit pkgs; })
     (import ../../scripts/squirtle.nix { inherit pkgs; })
-    (import ../../scripts/themechange.nix {
-      inherit pkgs;
-      inherit host;
-      inherit username;
-    })
-    (import ../../scripts/theme-selector.nix { inherit pkgs; })
     (import ../../scripts/nvidia-offload.nix { inherit pkgs; })
     (import ../../scripts/wallsetter.nix {
       inherit pkgs;
