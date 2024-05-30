@@ -44,7 +44,6 @@ in
     source = ../../config/fonts;
     recursive = true;
   };
-  home.file.".config/starship.toml".source = ../../config/starship.toml;
   home.file.".config/ascii-neofetch".source = ../../config/ascii-neofetch;
   home.file.".base16-themes".source = ../../config/base16-themes;
   home.file.".face.icon".source = ../../config/face.jpg;
