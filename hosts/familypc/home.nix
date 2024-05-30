@@ -23,6 +23,7 @@ in
     inputs.hyprland.homeManagerModules.default
     ../../config/emoji.nix
     ../../config/hyprland.nix
+    ../../config/neovim.nix
     ../../config/rofi/rofi.nix
     ../../config/rofi/config-emoji.nix
     ../../config/rofi/config-long.nix
@@ -112,12 +113,11 @@ in
       package = pkgs.papirus-icon-theme;
     };
     gtk3.extraConfig = {
-      gtk-application-prefer-dark-theme=1;
+      gtk-application-prefer-dark-theme = 1;
     };
     gtk4.extraConfig = {
-      gtk-application-prefer-dark-theme=1;
+      gtk-application-prefer-dark-theme = 1;
     };
-
   };
 
   # Scripts
@@ -146,6 +146,10 @@ in
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
+          starship = {
+            enable = true;
+            package = pkgs.starship;
+          };
         };
         listener = [
           {
@@ -164,84 +168,6 @@ in
 
   programs = {
     gh.enable = true;
-    neovim = {
-      enable = true;
-      defaultEditor = true;
-      viAlias = true;
-      vimAlias = true;
-      vimdiffAlias = true;
-      withNodeJs = true;
-      extraPackages = with pkgs; [
-        lua-language-server
-        gopls
-        xclip
-        wl-clipboard
-        luajitPackages.lua-lsp
-        nil
-        rust-analyzer
-        nodePackages.bash-language-server
-        yaml-language-server
-        pyright
-        marksman
-      ];
-      plugins = with pkgs.vimPlugins; [
-        alpha-nvim
-        auto-session
-        bufferline-nvim
-        dressing-nvim
-        indent-blankline-nvim
-        nui-nvim
-        finecmdline
-        nvim-treesitter.withAllGrammars
-        lualine-nvim
-        nvim-autopairs
-        nvim-web-devicons
-        nvim-cmp
-        nvim-surround
-        nvim-lspconfig
-        cmp-nvim-lsp
-        cmp-buffer
-        luasnip
-        cmp_luasnip
-        friendly-snippets
-        lspkind-nvim
-        comment-nvim
-        nvim-ts-context-commentstring
-        plenary-nvim
-        neodev-nvim
-        luasnip
-        telescope-nvim
-        todo-comments-nvim
-        nvim-tree-lua
-        telescope-fzf-native-nvim
-        vim-tmux-navigator
-      ];
-      extraConfig = ''
-        set noemoji
-        nnoremap : <cmd>FineCmdline<CR>
-      '';
-      extraLuaConfig = ''
-        ${builtins.readFile ../../config/nvim/options.lua}
-        ${builtins.readFile ../../config/nvim/keymaps.lua}
-        ${builtins.readFile ../../config/nvim/plugins/alpha.lua}
-        ${builtins.readFile ../../config/nvim/plugins/autopairs.lua}
-        ${builtins.readFile ../../config/nvim/plugins/auto-session.lua}
-        ${builtins.readFile ../../config/nvim/plugins/comment.lua}
-        ${builtins.readFile ../../config/nvim/plugins/cmp.lua}
-        ${builtins.readFile ../../config/nvim/plugins/lsp.lua}
-        ${builtins.readFile ../../config/nvim/plugins/nvim-tree.lua}
-        ${builtins.readFile ../../config/nvim/plugins/telescope.lua}
-        ${builtins.readFile ../../config/nvim/plugins/todo-comments.lua}
-        ${builtins.readFile ../../config/nvim/plugins/treesitter.lua}
-        ${builtins.readFile ../../config/nvim/plugins/fine-cmdline.lua}
-        require("ibl").setup()
-        require("bufferline").setup{}
-        require("lualine").setup({
-          icons_enabled = true,
-          theme = 'dracula',
-        })
-      '';
-    };
     kitty = {
       enable = true;
       package = pkgs.kitty;
@@ -257,10 +183,6 @@ in
         active_tab_font_style   bold
         inactive_tab_font_style bold
       '';
-    };
-    starship = {
-      enable = true;
-      package = pkgs.starship;
     };
     bash = {
       enable = true;
