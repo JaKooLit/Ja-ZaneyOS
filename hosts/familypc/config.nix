@@ -97,7 +97,7 @@
 
   qt = {
     enable = true;
-    style = "gtk2";
+    style = "adwaita-dark";
     platformTheme = "gtk2";
   };
 
@@ -262,6 +262,7 @@
     };
     greetd = {
       enable = true;
+      vt = 3;
       settings = {
         default_session = {
           # Wayland Desktop Manager is installed only for user ryan via home-manager!
