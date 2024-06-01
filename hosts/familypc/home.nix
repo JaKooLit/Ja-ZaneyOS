@@ -6,10 +6,6 @@
   ...
 }:
 let
-  finecmdline = pkgs.vimUtils.buildVimPlugin {
-    name = "fine-cmdline";
-    src = inputs.fine-cmdline;
-  };
   inherit (import ./variables.nix) gitUsername gitEmail;
 in
 {
@@ -39,10 +35,6 @@ in
   };
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
-    recursive = true;
-  };
-  home.file.".local/share/fonts" = {
-    source = ../../config/fonts;
     recursive = true;
   };
   home.file.".config/ascii-neofetch".source = ../../config/ascii-neofetch;

@@ -84,4 +84,4 @@ echo "-----"
 
 echo "ZaneyOS Has Been Setup"
 echo "Please Edit Your Hosts Files"
-echo "Then Run: sudo nixos-rebuild switch --flake .#${hostName}"
+echo "Then Run: sudo nixos-rebuild switch --flake ~/zaneyos/#${hostName}"

@@ -80,12 +80,12 @@
         name = "JetBrainsMono Nerd Font Mono";
       };
       sansSerif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Sans";
+        package = pkgs.montserrat;
+        name = "Montserrat";
       };
       serif = {
-        package = pkgs.dejavu_fonts;
-        name = "DejaVu Serif";
+        package = pkgs.montserrat;
+        name = "Montserrat";
       };
       sizes = {
         applications = 12;
@@ -303,7 +303,6 @@
 
   fonts = {
     packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
       noto-fonts-emoji
       noto-fonts-cjk
       font-awesome
@@ -313,7 +312,7 @@
   };
 
   environment.variables = {
-    ZANEYOS_VERSION = "2.1";
+    ZANEYOS_VERSION = "2.2";
     ZANEYOS = "true";
   };
 
@@ -364,7 +363,10 @@
     gvfs.enable = true;
     openssh.enable = true;
     flatpak.enable = false;
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [ pkgs.hplipWithPlugin ];
+    };
     gnome.gnome-keyring.enable = true;
     avahi = {
       enable = true;
