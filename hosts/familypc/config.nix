@@ -108,12 +108,6 @@
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
 
-  qt = {
-    enable = true;
-    style = "adwaita-dark";
-    platformTheme = "gtk2";
-  };
-
   # Enable networking
   networking.networkmanager.enable = true;
   networking.hostName = host;

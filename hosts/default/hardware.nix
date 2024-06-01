@@ -29,10 +29,10 @@
     fsType = "ext4";
   };
 
-  # fileSystems."/home/${username}/nfs" =
-  #   { device = "/dev/disk/by-uuid/55555555-5555-5555-5555-555555555555";
-  #     fsType = "nfs";
-  #   };
+  fileSystems."/home/${username}/Documents" = {
+    device = "/dev/disk/by-uuid/5605f7ab-73df-4234-a8ed-50c1eae69ffa";
+    fsType = "ext4";
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7CBF-413D";

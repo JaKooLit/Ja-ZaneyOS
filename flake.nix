@@ -21,7 +21,7 @@
     { nixpkgs, home-manager, ... }@inputs:
     let
       system = "x86_64-linux";
-      host = "familypc";
+      host = "default";
       username = "zaney";
     in
     {

@@ -1,10 +1,7 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "John Smith";
-  gitEmail = "example@gmail.com";
-
-  # Base16 Theme
-  theme = "dracula";
+  gitUsername = "Tyler Kelley";
+  gitEmail = "tylerzanekelley@gmail.com";
 
   # Hyprland Settings
   borderAnim = true; # Enable / Disable Hyprland Border Animation

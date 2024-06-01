@@ -1,8 +1,6 @@
 {
   pkgs,
-  config,
   username,
-  host,
   ...
 }:
 
@@ -24,7 +22,8 @@ in
       ];
       shell = pkgs.bash;
       ignoreShellProgramCheck = true;
-      packages = with pkgs; [ ];
+      packages = with pkgs; [
+      ];
     };
     # "newuser" = {
     #   homeMode = "755";
