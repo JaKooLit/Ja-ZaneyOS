@@ -1,7 +1,7 @@
 {
   # Git Configuration ( For Pulling Software Repos )
-  gitUsername = "Tyler Kelley";
-  gitEmail = "tylerzanekelley@gmail.com";
+  gitUsername = "John Smith";
+  gitEmail = "example@gmail.com";
 
   # Hyprland Settings
   borderAnim = true; # Enable / Disable Hyprland Border Animation
