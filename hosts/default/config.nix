@@ -375,8 +375,8 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    rpcbind.enable = true;
-    nfs.server.enable = true;
+    rpcbind.enable = false;
+    nfs.server.enable = false;
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
