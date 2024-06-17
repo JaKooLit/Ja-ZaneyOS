@@ -31,34 +31,16 @@ in
     source = ../../config/wallpapers;
     recursive = true;
   };
+  home.file.".config/fastfetch" = {
+    source = ../../config/fastfetch;
+    recursive = true;
+  };
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
   };
-  home.file.".config/ascii-neofetch".source = ../../config/ascii-neofetch;
   home.file.".face.icon".source = ../../config/face.jpg;
   home.file.".config/face.jpg".source = ../../config/face.jpg;
-  home.file.".config/neofetch/config.conf".text = ''
-    print_info() {
-      prin "$(color 6)  ZaneyOS $ZANEYOS_VERSION"
-      info underline
-      info "$(color 7)  VER" kernel
-      info "$(color 2)  UP " uptime
-      info "$(color 4)  PKG" packages
-      info "$(color 6)  DE " de
-      info "$(color 5)  TER" term
-      info "$(color 3)  CPU" cpu
-      info "$(color 7)  GPU" gpu
-      info "$(color 5)  MEM" memory
-      prin " "
-      prin "$(color 1) $(color 2) $(color 3) $(color 4) $(color 5) $(color 6) $(color 7) $(color 8)"
-    }
-    distro_shorthand="on"
-    memory_unit="gib"
-    cpu_temp="C"
-    separator=" $(color 4)>"
-    stdout="off"
-  '';
   home.file.".config/swappy/config".text = ''
     [Default]
     save_dir=/home/${username}/Pictures/Screenshots
@@ -189,7 +171,7 @@ in
         #fi
       '';
       initExtra = ''
-        neofetch
+        fastfetch
         if [ -f $HOME/.bashrc-personal ]; then
           source $HOME/.bashrc-personal
         fi
@@ -206,7 +188,6 @@ in
         la = "lsd -a";
         lal = "lsd -al";
         ".." = "cd ..";
-        neofetch = "neofetch --ascii ~/.config/ascii-neofetch";
       };
     };
     home-manager.enable = true;
