@@ -36,3 +36,6 @@ This release has a big theming change as well as including the move back to rofi
 - Separated Neovim configuration for readability.
 - Updated flake and added fix for popups going to wrkspc 1 in Hyprland.
 - Removed a few of the packages that aren't necessary and smartd by default.
+- Removed unnecessary Hyprland input in flake as home manager doesn't use it.
+- Turned off nfs by default
+- Hyprland plugins are now not in the config at all by default. 

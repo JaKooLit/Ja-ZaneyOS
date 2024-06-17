@@ -1,14 +1,11 @@
 {
-  pkgs,
   lib,
-  inputs,
   username,
   host,
   ...
 }:
 
 let
-  hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
   inherit (import ../hosts/${host}/variables.nix)
     browser
     borderAnim
@@ -22,9 +19,6 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    plugins = [
-      # hyprplugins.hyprtrails
-    ];
     extraConfig =
       let
         modifier = "SUPER";
