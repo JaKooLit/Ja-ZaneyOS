@@ -42,3 +42,4 @@ This release has a big theming change as well as including the move back to rofi
 - Fastfetch is now replacing neofetch.
 - Btop is back baby!
 - Switching to Brave as the default to protect user privacy.
+- Replaced lsd with eza for a better looking experience.

@@ -252,6 +252,8 @@
     libnotify
     v4l-utils
     ydotool
+    duf
+    ncdu
     wl-clipboard
     pciutils
     ffmpeg
