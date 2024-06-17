@@ -1,6 +1,5 @@
 {
   pkgs,
-  inputs,
   username,
   host,
   ...
@@ -16,7 +15,6 @@ in
 
   # Import Program Configurations
   imports = [
-    inputs.hyprland.homeManagerModules.default
     ../../config/emoji.nix
     ../../config/hyprland.nix
     ../../config/neovim.nix
