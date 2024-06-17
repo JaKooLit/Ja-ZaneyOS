@@ -38,4 +38,6 @@ This release has a big theming change as well as including the move back to rofi
 - Removed a few of the packages that aren't necessary and smartd by default.
 - Removed unnecessary Hyprland input in flake as home manager doesn't use it.
 - Turned off nfs by default
-- Hyprland plugins are now dissabled in the config by default. 
+- Hyprland plugins are now disabled in the config by default.
+- Fastfetch is now replacing neofetch.
+- Btop is back baby!

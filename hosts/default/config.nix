@@ -242,6 +242,7 @@
     lolcat
     fastfetch
     htop
+    btop
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
