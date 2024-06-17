@@ -51,6 +51,7 @@
 
   # Styling Options
   stylix = {
+    enable = true;
     image = ../../config/wallpapers/zaney-wallpaper.jpg;
     # base16Scheme = {
     #   base00 = "232136";
@@ -243,12 +244,10 @@
     htop
     libvirt
     lxqt.lxqt-policykit
-    mangohud
     lm_sensors
     unzip
     unrar
     libnotify
-    eza
     v4l-utils
     ydotool
     wl-clipboard
@@ -262,7 +261,6 @@
     pkg-config
     meson
     hyprpicker
-    gnumake
     ninja
     brightnessctl
     virt-viewer
@@ -281,15 +279,10 @@
     gnome.file-roller
     swaynotificationcenter
     imv
-    transmission-gtk
-    distrobox
     mpv
     gimp
-    rustup
-    audacity
     pavucontrol
     tree
-    protonup-qt
     spotify
     neovide
     greetd.tuigreet
@@ -353,17 +346,19 @@
       autodetect = true;
     };
     libinput.enable = true;
-    fstrim.enable = false;
+    fstrim.enable = true;
     gvfs.enable = true;
     openssh.enable = true;
     flatpak.enable = false;
     printing = {
       enable = true;
-      # drivers = [ pkgs.hplipWithPlugin ];
+      drivers = [
+        # pkgs.hplipWithPlugin 
+      ];
     };
     gnome.gnome-keyring.enable = true;
     avahi = {
-      enable = true;
+      enable = false;
       nssmdns4 = true;
       openFirewall = true;
     };

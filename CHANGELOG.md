@@ -21,7 +21,7 @@ Simple bug fixes.
 
 **ZaneyOS 2.2**
 
-This release has a big theming change as well as including the move back to rofi. *Please note there is a known bug with Steam crashing Hyprland. After re-logging in though it shouldn't do it again. I will continue to hunt for a fix for this.*
+This release has a big theming change as well as including the move back to rofi. It is a massive improvement in many ways.
 
 - Revert the switch from rofi to wofi. Rofi is just better.
 - Switch from Nix Colors to Stylix. It can build colorschemes from a wallpaper.
@@ -34,3 +34,5 @@ This release has a big theming change as well as including the move back to rofi
 - Added Plymouth for better looking booting.
 - Improve the fonts being installed and properly separate them from regular packages.
 - Separated Neovim configuration for readability.
+- Updated flake and added fix for popups going to wrkspc 1 in Hyprland.
+- Removed a few of the packages that aren't necessary and dissabled avahi and smartd by default.
