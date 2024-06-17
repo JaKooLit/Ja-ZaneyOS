@@ -237,12 +237,12 @@
     vim
     wget
     killall
+    eza
     git
     cmatrix
     lolcat
     fastfetch
     htop
-    btop
     brave
     libvirt
     lxqt.lxqt-policykit
@@ -258,7 +258,6 @@
     socat
     cowsay
     ripgrep
-    lsd
     lshw
     pkg-config
     meson

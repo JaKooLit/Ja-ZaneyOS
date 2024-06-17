@@ -146,6 +146,13 @@ in
 
   programs = {
     gh.enable = true;
+    btop = {
+      enable = true;
+      settings = {
+        color_theme = "TTY";
+        vim_keys = true;
+      };
+    };
     kitty = {
       enable = true;
       package = pkgs.kitty;
@@ -183,10 +190,9 @@ in
         zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
-        ls = "lsd";
-        ll = "lsd -l";
-        la = "lsd -a";
-        lal = "lsd -al";
+        ls = "eza --icons";
+        ll = "eza -lh --icons --grid --group-directories-first";
+        la = "eza -lah --icons --grid --group-directories-first";
         ".." = "cd ..";
       };
     };
