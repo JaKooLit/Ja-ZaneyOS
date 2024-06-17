@@ -35,4 +35,4 @@ This release has a big theming change as well as including the move back to rofi
 - Improve the fonts being installed and properly separate them from regular packages.
 - Separated Neovim configuration for readability.
 - Updated flake and added fix for popups going to wrkspc 1 in Hyprland.
-- Removed a few of the packages that aren't necessary and dissabled avahi and smartd by default.
+- Removed a few of the packages that aren't necessary and smartd by default.
