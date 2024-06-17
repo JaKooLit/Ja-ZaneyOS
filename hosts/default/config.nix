@@ -133,7 +133,7 @@
   };
 
   programs = {
-    firefox.enable = true;
+    firefox.enable = false;
     starship = {
       enable = true;
       settings = {
@@ -243,6 +243,7 @@
     fastfetch
     htop
     btop
+    brave
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
