@@ -190,7 +190,8 @@ with lib;
           min-height: 0px;
         }
         window#waybar {
-          background: #${config.stylix.base16Scheme.base00};
+          # background: #${config.stylix.base16Scheme.base00};
+          background: rgba(0,0,0,0);
         }
         #workspaces {
           color: #${config.stylix.base16Scheme.base00};
