@@ -77,11 +77,9 @@ sudo nixos-generate-config --show-hardware-config > ./hosts/$hostName/hardware.n
 
 echo "-----"
 
-echo "Setting Required Nix Settings & Committing Changes"
+echo "Setting Required Nix Settings Then Going To Install"
 NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 
-echo "ZaneyOS Has Been Setup"
-echo "Please Edit Your Hosts Files"
-echo "Then Run: sudo nixos-rebuild switch --flake .#${hostName}"
+sudo nixos-rebuild switch --flake ~/zaneyos/#${hostName}

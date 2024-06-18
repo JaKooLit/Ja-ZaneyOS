@@ -2,7 +2,6 @@
   config,
   pkgs,
   host,
-  inputs,
   username,
   options,
   ...
@@ -20,38 +19,100 @@
     ../../modules/local-hardware-clock.nix
   ];
 
-  # Kernel
-  boot.kernelPackages = pkgs.linuxPackages;
-  # boot.kernelPackages = pkgs.linuxPackages_zen;
-
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.kernel.sysctl = {
-    "vm.max_map_count" = 2147483642;
+  boot = {
+    # Kernel
+    kernelPackages = pkgs.linuxPackages_zen;
+    # This is for OBS Virtual Cam Support
+    kernelModules = [ "v4l2loopback" ];
+    extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
+    # Needed For Some Steam Games
+    kernel.sysctl = {
+      "vm.max_map_count" = 2147483642;
+    };
+    # Bootloader.
+    loader.systemd-boot.enable = true;
+    loader.efi.canTouchEfiVariables = true;
+    # Make /tmp a tmpfs
+    tmp = {
+      useTmpfs = false;
+      tmpfsSize = "30%";
+    };
+    # Appimage Support
+    binfmt.registrations.appimage = {
+      wrapInterpreterInShell = false;
+      interpreter = "${pkgs.appimage-run}/bin/appimage-run";
+      recognitionType = "magic";
+      offset = 0;
+      mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
+      magicOrExtension = ''\x7fELF....AI\x02'';
+    };
+    plymouth.enable = true;
   };
-  boot.tmp.useTmpfs = false;
-  boot.tmp.tmpfsSize = "30%";
-  boot.binfmt.registrations.appimage = {
-    wrapInterpreterInShell = false;
-    interpreter = "${pkgs.appimage-run}/bin/appimage-run";
-    recognitionType = "magic";
-    offset = 0;
-    mask = ''\xff\xff\xff\xff\x00\x00\x00\x00\xff\xff\xff'';
-    magicOrExtension = ''\x7fELF....AI\x02'';
+
+  # Styling Options
+  stylix = {
+    enable = true;
+    image = ../../config/wallpapers/beautifulmountainscape.jpg;
+    # base16Scheme = {
+    #   base00 = "232136";
+    #   base01 = "2a273f";
+    #   base02 = "393552";
+    #   base03 = "6e6a86";
+    #   base04 = "908caa";
+    #   base05 = "e0def4";
+    #   base06 = "e0def4";
+    #   base07 = "56526e";
+    #   base08 = "eb6f92";
+    #   base09 = "f6c177";
+    #   base0A = "ea9a97";
+    #   base0B = "3e8fb0";
+    #   base0C = "9ccfd8";
+    #   base0D = "c4a7e7";
+    #   base0E = "f6c177";
+    #   base0F = "56526e";
+    # };
+    polarity = "dark";
+    opacity.terminal = 0.8;
+    cursor.package = pkgs.bibata-cursors;
+    cursor.name = "Bibata-Modern-Ice";
+    cursor.size = 24;
+    fonts = {
+      monospace = {
+        package = pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; };
+        name = "JetBrainsMono Nerd Font Mono";
+      };
+      sansSerif = {
+        package = pkgs.montserrat;
+        name = "Montserrat";
+      };
+      serif = {
+        package = pkgs.montserrat;
+        name = "Montserrat";
+      };
+      sizes = {
+        applications = 12;
+        terminal = 15;
+        desktop = 11;
+        popups = 12;
+      };
+    };
   };
 
-  # This is for OBS Virtual Cam Support - v4l2loopback setup
-  boot.kernelModules = [ "v4l2loopback" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
-
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
+  # Extra Module Options
+  drivers.amdgpu.enable = true;
+  drivers.nvidia.enable = false;
+  drivers.nvidia-prime = {
+    enable = false;
+    intelBusID = "";
+    nvidiaBusID = "";
+  };
+  drivers.intel.enable = false;
+  vm.guest-services.enable = false;
+  local.hardware-clock.enable = false;
 
   # Enable networking
   networking.networkmanager.enable = true;
-  networking.hostName = "${host}";
+  networking.hostName = host;
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
@@ -73,12 +134,76 @@
   };
 
   programs = {
-    hyprland = {
+    firefox.enable = false;
+    starship = {
       enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      xwayland.enable = true;
+      settings = {
+        add_newline = false;
+        buf = {
+          symbol = " ";
+        };
+        c = {
+          symbol = " ";
+        };
+        directory = {
+          read_only = " 󰌾";
+        };
+        docker_context = {
+          symbol = " ";
+        };
+        fossil_branch = {
+          symbol = " ";
+        };
+        git_branch = {
+          symbol = " ";
+        };
+        golang = {
+          symbol = " ";
+        };
+        hg_branch = {
+          symbol = " ";
+        };
+        hostname = {
+          ssh_symbol = " ";
+        };
+        lua = {
+          symbol = " ";
+        };
+        memory_usage = {
+          symbol = "󰍛 ";
+        };
+        meson = {
+          symbol = "󰔷 ";
+        };
+        nim = {
+          symbol = "󰆥 ";
+        };
+        nix_shell = {
+          symbol = " ";
+        };
+        nodejs = {
+          symbol = " ";
+        };
+        ocaml = {
+          symbol = " ";
+        };
+        package = {
+          symbol = "󰏗 ";
+        };
+        python = {
+          symbol = " ";
+        };
+        rust = {
+          symbol = " ";
+        };
+        swift = {
+          symbol = " ";
+        };
+        zig = {
+          symbol = " ";
+        };
+      };
     };
-    firefox.enable = true;
     dconf.enable = true;
     seahorse.enable = true;
     fuse.userAllowOther = true;
@@ -96,7 +221,10 @@
     };
     thunar = {
       enable = true;
-      plugins = with pkgs.xfce; [ thunar-archive-plugin thunar-volman ];
+      plugins = with pkgs.xfce; [
+        thunar-archive-plugin
+        thunar-volman
+      ];
     };
   };
 
@@ -106,111 +234,134 @@
     mutableUsers = true;
   };
 
-  environment.systemPackages =
-    let
-      sugar = pkgs.callPackage ../../pkgs/sddm-sugar-dark.nix { };
-      tokyo-night = pkgs.libsForQt5.callPackage ../../pkgs/sddm-tokyo-night.nix { };
-    in
-    with pkgs;
-    [
-      vim
-      wget
-      killall
-      git
-      cmatrix
-      lolcat
-      neofetch
-      htop
-      libvirt
-      lxqt.lxqt-policykit
-      mangohud
-      lm_sensors
-      unzip
-      unrar
-      libnotify
-      eza
-      v4l-utils
-      ydotool
-      wl-clipboard
-      lm_sensors
-      pciutils
-      socat
-      cowsay
-      ripgrep
-      lsd
-      lshw
-      pkg-config
-      meson
-      gnumake
-      ninja
-      symbola
-      noto-fonts-color-emoji
-      material-icons
-      brightnessctl
-      virt-viewer
-      swappy
-      appimage-run
-      networkmanagerapplet
-      yad
-      playerctl
-      nh
-      nixfmt-rfc-style
-      discord
-      libvirt
-      swww
-      grim
-      slurp
-      gnome.file-roller
-      swaynotificationcenter
-      imv
-      transmission-gtk
-      distrobox
-      mpv
-      gimp
-      obs-studio
-      rustup
-      audacity
-      pavucontrol
-      tree
-      protonup-qt
+  environment.systemPackages = with pkgs; [
+    vim
+    wget
+    killall
+    eza
+    git
+    cmatrix
+    lolcat
+    fastfetch
+    htop
+    brave
+    libvirt
+    lxqt.lxqt-policykit
+    lm_sensors
+    unzip
+    unrar
+    libnotify
+    v4l-utils
+    ydotool
+    duf
+    ncdu
+    wl-clipboard
+    pciutils
+    ffmpeg
+    socat
+    cowsay
+    ripgrep
+    lshw
+    bat
+    pkg-config
+    meson
+    hyprpicker
+    ninja
+    brightnessctl
+    virt-viewer
+    swappy
+    appimage-run
+    networkmanagerapplet
+    yad
+    inxi
+    playerctl
+    nh
+    nixfmt-rfc-style
+    discord
+    libvirt
+    swww
+    grim
+    slurp
+    gnome.file-roller
+    swaynotificationcenter
+    imv
+    mpv
+    gimp
+    pavucontrol
+    tree
+    spotify
+    neovide
+    greetd.tuigreet
+  ];
+
+  fonts = {
+    packages = with pkgs; [
+      noto-fonts-emoji
+      noto-fonts-cjk
       font-awesome
-      spotify
-      neovide
-      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-      sugar.sddm-sugar-dark # Name: sugar-dark
-      tokyo-night # Name: tokyo-night-sddm
-      pkgs.libsForQt5.qt5.qtgraphicaleffects
+      symbola
+      material-icons
     ];
+  };
 
   environment.variables = {
-    ZANEYOS_VERSION = "2.1";
+    ZANEYOS_VERSION = "2.2";
     ZANEYOS = "true";
+  };
+
+  # Extra Portal Configuration
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal
+    ];
+    configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-hyprland
+      pkgs.xdg-desktop-portal
+    ];
   };
 
   # Services to start
   services = {
     xserver = {
-      enable = true;
-      displayManager.sddm = {
-        enable = true;
-        autoNumlock = true;
-        wayland.enable = true;
-        theme = "sugar-dark";
-      };
-      desktopManager.cinnamon.enable = false;
+      enable = false;
       xkb = {
         layout = "us";
         variant = "";
       };
     };
-    smartd = {
+    greetd = {
       enable = true;
+      vt = 3;
+      settings = {
+        default_session = {
+          # Wayland Desktop Manager is installed only for user ryan via home-manager!
+          user = username;
+          # .wayland-session is a script generated by home-manager, which links to the current wayland compositor(sway/hyprland or others).
+          # with such a vendor-no-locking script, we can switch to another wayland compositor without modifying greetd's config here.
+          # command = "$HOME/.wayland-session"; # start a wayland session directly without a login manager
+          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland"; # start Hyprland with a TUI login manager
+        };
+      };
+    };
+    smartd = {
+      enable = false;
       autodetect = true;
     };
     libinput.enable = true;
+    fstrim.enable = true;
+    gvfs.enable = true;
     openssh.enable = true;
     flatpak.enable = false;
-    printing.enable = true;
+    printing = {
+      enable = true;
+      drivers = [
+        # pkgs.hplipWithPlugin 
+      ];
+    };
     gnome.gnome-keyring.enable = true;
     avahi = {
       enable = true;
@@ -230,11 +381,10 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    rpcbind.enable = true;
-    nfs.server.enable = true;
+    rpcbind.enable = false;
+    nfs.server.enable = false;
   };
   systemd.services.flatpak-repo = {
-    wantedBy = [ "multi-user.target" ];
     path = [ pkgs.flatpak ];
     script = ''
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
@@ -245,8 +395,16 @@
     extraBackends = [ pkgs.sane-airscan ];
     disabledDefaultBackends = [ "escl" ];
   };
+
+  # Extra Logitech Support
   hardware.logitech.wireless.enable = true;
   hardware.logitech.wireless.enableGraphical = true;
+
+  # Bluetooth Support
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.powerOnBoot = true;
+  services.blueman.enable = true;
+
   # Enable sound with pipewire.
   sound.enable = true;
   hardware.pulseaudio.enable = false;
@@ -270,6 +428,11 @@
       }
     })
   '';
+  security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
   # Optimization settings and garbage collection automation
   nix = {
@@ -303,18 +466,6 @@
     driSupport = true;
     driSupport32Bit = true;
   };
-
-  # Extra Module Options
-  drivers.amdgpu.enable = true;
-  drivers.nvidia.enable = false;
-  drivers.nvidia-prime = {
-    enable = false;
-    intelBusID = "";
-    nvidiaBusID = "";
-  };
-  drivers.intel.enable = false;
-  vm.guest-services.enable = false;
-  local.hardware-clock.enable = false;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
