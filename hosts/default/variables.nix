@@ -4,7 +4,6 @@
   gitEmail = "tylerzanekelley@gmail.com";
 
   # Hyprland Settings
-  borderAnim = true; # Enable / Disable Hyprland Border Animation
   extraMonitorSettings = "";
 
   # Waybar Settings

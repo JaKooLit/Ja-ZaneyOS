@@ -4,6 +4,7 @@
   host,
   inputs,
   pkgs,
+  config,
   ...
 }:
 
@@ -11,7 +12,6 @@ let
   hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
   inherit (import ../hosts/${host}/variables.nix)
     browser
-    borderAnim
     terminal
     extraMonitorSettings
     ;
@@ -59,11 +59,13 @@ with lib;
             border_size = 2
             layout = dwindle
             resize_on_border = true
+            col.active_border = rgb(${config.stylix.base16Scheme.base08}) rgb(${config.stylix.base16Scheme.base0C}) 45deg
+            col.inactive_border = rgb(${config.stylix.base16Scheme.base01})
           }
           input {
             kb_layout = us
             kb_options = grp:alt_shift_toggle
-            kb_options=caps:super
+            kb_options = caps:super
             follow_mouse = 1
             touchpad {
               natural_scroll = false
@@ -74,8 +76,14 @@ with lib;
           windowrule = noborder,^(wofi)$
           windowrule = center,^(wofi)$
           windowrule = center,^(steam)$
+          windowrule = float, nm-connection-editor|blueman-manager
+          windowrule = float, swayimg|vlc|Viewnior|pavucontrol
+          windowrule = float, nwg-look|qt5ct|mpv
+          windowrule = float, zoom
           windowrulev2 = stayfocused, title:^()$,class:^(steam)$
           windowrulev2 = minsize 1 1, title:^()$,class:^(steam)$
+          windowrulev2 = opacity 0.9 0.7, class:^(Brave)$
+          windowrulev2 = opacity 0.9 0.7, class:^(thunar)$
           gestures {
             workspace_swipe = true
             workspace_swipe_fingers = 3
@@ -96,26 +104,21 @@ with lib;
             animation = windowsOut, 1, 5, winOut, slide
             animation = windowsMove, 1, 5, wind, slide
             animation = border, 1, 1, liner
-            ${
-              if borderAnim == true then
-                ''
-                  animation = borderangle, 1, 30, liner, loop
-                ''
-              else
-                ''''
-            }
             animation = fade, 1, 10, default
             animation = workspaces, 1, 5, wind
           }
           decoration {
             rounding = 10
-            drop_shadow = false
+            drop_shadow = true
+            shadow_range = 4
+            shadow_render_power = 3
+            col.shadow = rgba(1a1a1aee)
             blur {
                 enabled = true
                 size = 5
                 passes = 3
                 new_optimizations = on
-                ignore_opacity = on
+                ignore_opacity = off
             }
           }
           plugin {

@@ -72,6 +72,7 @@
     #   base0F = "56526e";
     # };
     polarity = "dark";
+    opacity.terminal = 0.8;
     cursor.package = pkgs.bibata-cursors;
     cursor.name = "Bibata-Modern-Ice";
     cursor.size = 24;
@@ -261,6 +262,7 @@
     cowsay
     ripgrep
     lshw
+    bat
     pkg-config
     meson
     hyprpicker
@@ -271,6 +273,7 @@
     appimage-run
     networkmanagerapplet
     yad
+    inxi
     playerctl
     nh
     nixfmt-rfc-style

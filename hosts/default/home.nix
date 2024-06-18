@@ -79,6 +79,7 @@ in
   # Styling Options
   stylix.targets.waybar.enable = false;
   stylix.targets.rofi.enable = false;
+  stylix.targets.hyprland.enable = false;
   gtk = {
     iconTheme = {
       name = "Papirus-Dark";
@@ -189,6 +190,7 @@ in
         zu = "sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)";
         ncg = "nix-collect-garbage --delete-old && sudo nix-collect-garbage -d && sudo /run/current-system/bin/switch-to-configuration boot";
         v = "nvim";
+        cat = "bat";
         ls = "eza --icons";
         ll = "eza -lh --icons --grid --group-directories-first";
         la = "eza -lah --icons --grid --group-directories-first";
