@@ -305,7 +305,7 @@
   };
 
   environment.variables = {
-    ZANEYOS_VERSION = "2.2";
+    ZANEYOS_VERSION = "2.2.1";
     ZANEYOS = "true";
   };
 
@@ -381,8 +381,8 @@
       alsa.support32Bit = true;
       pulse.enable = true;
     };
-    rpcbind.enable = false;
-    nfs.server.enable = false;
+    rpcbind.enable = true;
+    nfs.server.enable = true;
   };
   systemd.services.flatpak-repo = {
     path = [ pkgs.flatpak ];
