@@ -60,8 +60,15 @@ Simply copy this and run it:
 
 ```
 nix-shell -p git curl
+```
+
+Then this:
+
+```
 sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)
 ```
+
+Now when this is done you will need to reboot.
 
 #### 🦽 Manual:
 
