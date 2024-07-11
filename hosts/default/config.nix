@@ -282,7 +282,7 @@
     swww
     grim
     slurp
-    gnome.file-roller
+    file-roller
     swaynotificationcenter
     imv
     mpv
@@ -397,8 +397,8 @@
   };
 
   # Extra Logitech Support
-  hardware.logitech.wireless.enable = true;
-  hardware.logitech.wireless.enableGraphical = true;
+  hardware.logitech.wireless.enable = false;
+  hardware.logitech.wireless.enableGraphical = false;
 
   # Bluetooth Support
   hardware.bluetooth.enable = true;
@@ -461,10 +461,8 @@
   };
 
   # OpenGL
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
   };
 
   # Open ports in the firewall.
