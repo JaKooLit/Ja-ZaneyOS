@@ -1,5 +1,7 @@
 {pkgs, ...}: {
   programs.fastfetch = {
+    enable = true;
+    
     logo = {
         source = ./nixos.png;
         type = "kitty-direct";
