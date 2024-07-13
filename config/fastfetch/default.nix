@@ -96,7 +96,7 @@
               type = "command";
               key = "│ ";
               keyColor = "33";
-              text = pkgs.writeShellScriptBin "fs-bday" # bash
+              text = #bash
               ''
                 birth_install=$(stat -c %W /)
                 current=$(date +%s)
