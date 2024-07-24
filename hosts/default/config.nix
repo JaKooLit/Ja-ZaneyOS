@@ -6,7 +6,9 @@
   options,
   ...
 }:
-
+let
+  inherit (import ../hosts/${host}/variables.nix) keyboardLayout;
+in
 {
   imports = [
     ./hardware.nix
@@ -329,7 +331,7 @@
     xserver = {
       enable = false;
       xkb = {
-        layout = "us";
+        layout = "${keyboardLayout}";
         variant = "";
       };
     };
@@ -359,7 +361,7 @@
     printing = {
       enable = true;
       drivers = [
-        # pkgs.hplipWithPlugin 
+        # pkgs.hplipWithPlugin
       ];
     };
     gnome.gnome-keyring.enable = true;
@@ -466,6 +468,8 @@
     driSupport = true;
     driSupport32Bit = true;
   };
+
+  console.keyMap = "${keyboardLayout}";
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
