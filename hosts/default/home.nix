@@ -121,11 +121,7 @@ in
           after_sleep_cmd = "hyprctl dispatch dpms on";
           ignore_dbus_inhibit = false;
           lock_cmd = "hyprlock";
-          starship = {
-            enable = true;
-            package = pkgs.starship;
           };
-        };
         listener = [
           {
             timeout = 900;
@@ -165,6 +161,10 @@ in
         inactive_tab_font_style bold
       '';
     };
+     starship = {
+            enable = true;
+            package = pkgs.starship;
+     };
     bash = {
       enable = true;
       enableCompletion = true;
