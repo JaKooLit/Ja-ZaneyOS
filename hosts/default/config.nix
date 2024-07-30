@@ -244,7 +244,6 @@ in
     git
     cmatrix
     lolcat
-    fastfetch
     htop
     brave
     libvirt

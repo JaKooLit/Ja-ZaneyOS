@@ -31,10 +31,6 @@ in
     source = ../../config/wallpapers;
     recursive = true;
   };
-  home.file.".config/fastfetch" = {
-    source = ../../config/fastfetch;
-    recursive = true;
-  };
   home.file.".config/wlogout/icons" = {
     source = ../../config/wlogout;
     recursive = true;
