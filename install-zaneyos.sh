@@ -65,6 +65,14 @@ git config --global user.email "installer@gmail.com"
 git add .
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 
+
+read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
+if [ -z "$keyboardLayout" ]; then
+  keyboardLayout="us"
+fi
+
+sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
+
 echo "-----"
 
 installusername=$(echo $USER)

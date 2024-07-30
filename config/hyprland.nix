@@ -14,6 +14,7 @@ let
     browser
     terminal
     extraMonitorSettings
+    keyboardLayout
     ;
 in
 with lib;
@@ -63,7 +64,7 @@ with lib;
             col.inactive_border = rgb(${config.stylix.base16Scheme.base01})
           }
           input {
-            kb_layout = us
+            kb_layout = ${keyboardLayout}
             kb_options = grp:alt_shift_toggle
             kb_options = caps:super
             follow_mouse = 1
