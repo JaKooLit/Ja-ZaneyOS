@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (import ../hosts/${host}/variables.nix) keyboardLayout;
+  inherit (import ./variables.nix) keyboardLayout;
 in
 {
   imports = [
