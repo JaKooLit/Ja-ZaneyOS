@@ -7,7 +7,7 @@
   ...
 }:
 let
-  inherit (import ../hosts/${host}/variables.nix) keyboardLayout;
+  inherit (import ./variables.nix) keyboardLayout;
 in
 {
   imports = [
@@ -407,7 +407,6 @@ in
   services.blueman.enable = true;
 
   # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
 
   # Security / Polkit
