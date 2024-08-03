@@ -10,26 +10,20 @@
       url = "github:VonHeikemen/fine-cmdline.nvim";
       flake = false;
     };
-    # This is required for plugin support.
-    # hyprland.url = "git+https://github.com/hyprwm/Hyprland?submodules=1";
-    # hyprland-plugins = {
-    #   url = "github:hyprwm/hyprland-plugins";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
   };
 
   outputs =
     { nixpkgs, home-manager, ... }@inputs:
     let
-      system = "x86_64-linux";
-      host = "default";
+      system = "aarch64-linux";
+      host = "nixbook";
       username = "zaney";
     in
     {
       nixosConfigurations = {
         "${host}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit system;
+	    inherit system;
             inherit inputs;
             inherit username;
             inherit host;

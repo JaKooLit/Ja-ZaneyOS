@@ -24,6 +24,7 @@ in
     ../../config/swaync.nix
     ../../config/waybar.nix
     ../../config/wlogout.nix
+    ../../config/fastfetch
   ];
 
   # Place Files Inside Home Directory
