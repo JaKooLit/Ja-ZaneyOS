@@ -2,14 +2,11 @@
   lib,
   username,
   host,
-  inputs,
-  pkgs,
   config,
   ...
 }:
 
 let
-  hyprplugins = inputs.hyprland-plugins.packages.${pkgs.system};
   inherit (import ../hosts/${host}/variables.nix)
     browser
     terminal
@@ -23,9 +20,6 @@ with lib;
     enable = true;
     xwayland.enable = true;
     systemd.enable = true;
-    # plugins = [
-    #   hyprplugins.hyprtrails
-    # ];
     extraConfig =
       let
         modifier = "SUPER";
@@ -69,8 +63,9 @@ with lib;
             kb_options = caps:super
             follow_mouse = 1
             touchpad {
-              natural_scroll = false
+              natural_scroll = true
               disable_while_typing = true
+              scroll_factor = 0.8
             }
             sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             accel_profile = flat

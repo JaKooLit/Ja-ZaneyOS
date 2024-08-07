@@ -24,6 +24,7 @@ in
       ignoreShellProgramCheck = true;
       packages = with pkgs; [
         webcord
+        zeroad
       ];
     };
     # "newuser" = {

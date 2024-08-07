@@ -12,10 +12,10 @@ let
 in
 {
   imports = [
-    ../../modules/apple-silicon-support
     ./hardware.nix
     ./users.nix
     ../../modules/amd-drivers.nix
+    ../../modules/apple-silicon-support
     ../../modules/nvidia-drivers.nix
     ../../modules/nvidia-prime-drivers.nix
     ../../modules/intel-drivers.nix
@@ -113,6 +113,9 @@ in
   drivers.intel.enable = false;
   vm.guest-services.enable = false;
   local.hardware-clock.enable = false;
+  # Apple Hardware
+  hardware.asahi.useExperimentalGPUDriver = true;
+  hardware.asahi.peripheralFirmwareDirectory = ../../modules/firmware;
 
   # Enable networking
   networking.wireless.iwd = {
@@ -403,10 +406,6 @@ in
   services.blueman.enable = true;
   hardware.pulseaudio.enable = false;
   
-  # Apple Hardware
-  hardware.asahi.useExperimentalGPUDriver = true;
-  hardware.asahi.peripheralFirmwareDirectory = ./firmware;
-
   # Security / Polkit
   security.rtkit.enable = true;
   security.polkit.enable = true;
