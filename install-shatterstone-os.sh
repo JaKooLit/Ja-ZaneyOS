@@ -39,11 +39,11 @@ backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "shatterstone-os" ]; then
   echo "ShatterstoneOS exists, backing up to .config/shatterstone-os-backups folder."
   if [ -d ".config/shatterstone-os-backups" ]; then
-    echo "Moving current version of ZaneyOS to backups folder."
+    echo "Moving current version of ShatterstoneOS to backups folder."
     mv "$HOME"/shatterstone-os .config/shatterstone-os-backups/"$backupname"
     sleep 1
   else
-    echo "Creating the backups folder & moving ZaneyOS to it."
+    echo "Creating the backups folder & moving ShatterstoneOS to it."
     mkdir -p .config/shatterstone-os-backups
     mv "$HOME"/shatterstone-os .config/shatterstone-os-backups/"$backupname"
     sleep 1
