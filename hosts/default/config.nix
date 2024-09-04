@@ -45,7 +45,7 @@ in
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
     
-    # loader.efi.efiSysMountPoint = "/efi"; # if you have a separate /efi partition
+    loader.efi.efiSysMountPoint = "/efi"; # if you have a separate /efi partition
 
     # Make /tmp a tmpfs
     tmp = {
