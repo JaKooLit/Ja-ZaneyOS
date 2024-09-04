@@ -62,7 +62,8 @@ Simply copy this and run it:
 
 ```
 nix-shell -p git curl
-sh <(curl -L https://github.com/JaKooLit/Ja-ZaneyOS/-/raw/main/install-zaneyos.sh)
+sh <(curl -L https://github.com/JaKooLit/Ja-ZaneyOS/raw/ja-edited/install-zaneyos.sh)
+
 ```
 
 #### 🦽 Manual:
