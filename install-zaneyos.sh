@@ -37,15 +37,15 @@ echo "-----"
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "Ja-ZaneyOS" ]; then
-  echo "Ja-ZaneyOS exists, backing up to .config/zaneyos-backups folder."
-  if [ -d ".config/zaneyos-backups" ]; then
-    echo "Moving current version of ZaneyOS to backups folder."
-    mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
+  echo "Ja-ZaneyOS exists, backing up to .config/Ja-ZaneyOS-backups folder."
+  if [ -d ".config/Ja-ZaneyOS-backups" ]; then
+    echo "Moving current version of Ja-ZaneyOS to backups folder."
+    mv "$HOME"/Ja-ZaneyOS .config/Ja-ZaneyOS-backups/"$backupname"
     sleep 1
   else
-    echo "Creating the backups folder & moving ZaneyOS to it."
-    mkdir -p .config/zaneyos-backups
-    mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
+    echo "Creating the backups folder & moving Ja-ZaneyOS to it."
+    mkdir -p .config/Ja-ZaneyOS-backups
+    mv "$HOME"/Ja-ZaneyOS .config/Ja-ZaneyOS-backups/"$backupname"
     sleep 1
   fi
 else
@@ -55,8 +55,8 @@ fi
 
 echo "-----"
 
-echo "Cloning & Entering ZaneyOS Repository"
-git clone --depth 1 -b ja-edited https://github.com/JaKooLit/Ja-ZaneyOS.git
+echo "Cloning & Entering Ja-ZaneyOS Repository"
+git clone --depth 1 https://github.com/JaKooLit/Ja-ZaneyOS.git
 cd Ja-ZaneyOS || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
