@@ -17,7 +17,7 @@ pkgs.writeShellScriptBin "list-hypr-bindings" ''
   --timeout-indicator=right \
   " = Windows/Super/CAPS LOCK" "Modifier Key, used for keybindings" "Doesn't really execute anything by itself." \
   " + ENTER" "Terminal" "${terminal}" \
-  " + D "App Launcher" "rofi" \
+  " + D" "App Launcher" "rofi" \
   " + W" "Change Wallpaper" "wallsetter" \
   " + Q" "Kill Focused Window" "killactive" \
   " + SHIFT + N" "Reload SwayNC Styling" "swaync-client -rs" \

@@ -309,7 +309,7 @@ in
     greetd.tuigreet
 
     # additional font
-    symbola
+    #symbola
   ];
 
   # hyprland development or -git version
