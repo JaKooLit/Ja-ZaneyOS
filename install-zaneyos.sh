@@ -36,8 +36,8 @@ fi
 echo "-----"
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
-if [ -d "zaneyos" ]; then
-  echo "ZaneyOS exists, backing up to .config/zaneyos-backups folder."
+if [ -d "Ja-ZaneyOS" ]; then
+  echo "Ja-ZaneyOS exists, backing up to .config/zaneyos-backups folder."
   if [ -d ".config/zaneyos-backups" ]; then
     echo "Moving current version of ZaneyOS to backups folder."
     mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
