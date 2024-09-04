@@ -25,6 +25,15 @@ in
   boot = {
     # Kernel
     kernelPackages = pkgs.linuxPackages_latest;
+
+    kernelParams = [
+    	"systemd.mask=systemd-vconsole-setup.service"
+    	"systemd.mask=dev-tpmrm0.device"
+      "nowatchdog"
+	   	"modprobe.blacklist=sp5100_tco"
+      "modprobe.blacklist=iTCO_wdt"
+ 	  ];
+
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
