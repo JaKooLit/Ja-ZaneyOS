@@ -111,8 +111,8 @@ with lib;
           animation = workspaces, 1, 5, overshot
           
           # animations for -git or version >0.42.0
-          animation = workspacesIn, 1, 5, winIn, slide
-          animation = workspacesOut, 1, 5, winOut, slide
+          #animation = workspacesIn, 1, 5, winIn, slide
+          #animation = workspacesOut, 1, 5, winOut, slide
           
           }
           decoration {
@@ -143,7 +143,7 @@ with lib;
           bind = ${modifier},W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
           #bind = ${modifier},W,exec,${browser}
-          bind = ${modifier},SHIFT,E,exec,emopicker9000
+          bind = ${modifier}SHIFT,E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
           #bind = ${modifier},D,exec,discord
           #bind = ${modifier},O,exec,obs
