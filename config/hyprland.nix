@@ -92,17 +92,28 @@ with lib;
           }
           animations {
             enabled = yes
-            bezier = wind, 0.05, 0.9, 0.1, 1.05
-            bezier = winIn, 0.1, 1.1, 0.1, 1.1
-            bezier = winOut, 0.3, -0.3, 0, 1
-            bezier = liner, 1, 1, 1, 1
-            animation = windows, 1, 6, wind, slide
-            animation = windowsIn, 1, 6, winIn, slide
-            animation = windowsOut, 1, 5, winOut, slide
-            animation = windowsMove, 1, 5, wind, slide
-            animation = border, 1, 1, liner
-            animation = fade, 1, 10, default
-            animation = workspaces, 1, 5, wind
+
+          bezier = wind, 0.05, 0.9, 0.1, 1.05
+          bezier = winIn, 0.1, 1.1, 0.1, 1.1
+          bezier = winOut, 0.3, -0.3, 0, 1
+          bezier = liner, 1, 1, 1, 1
+          bezier = overshot, 0.05, 0.9, 0.1, 1.05
+          bezier = smoothOut, 0.5, 0, 0.99, 0.99
+          bezier = smoothIn, 0.5, -0.5, 0.68, 1.5
+          
+          animation = windows, 1, 6, wind, slide
+          animation = windowsIn, 1, 5, winIn, slide
+          animation = windowsOut, 1, 3, smoothOut, slide
+          animation = windowsMove, 1, 5, wind, slide
+          animation = border, 1, 1, liner
+          animation = borderangle, 1, 180, liner, loop #used by rainbow borders and rotating colors
+          animation = fade, 1, 3, smoothOut
+          animation = workspaces, 1, 5, overshot
+          
+          # animations for -git or version >0.42.0
+          animation = workspacesIn, 1, 5, winIn, slide
+          animation = workspacesOut, 1, 5, winOut, slide
+          
           }
           decoration {
             rounding = 10
@@ -127,26 +138,26 @@ with lib;
             preserve_split = true
           }
           bind = ${modifier},Return,exec,${terminal}
-          bind = ${modifier}SHIFT,Return,exec,rofi-launcher
-          bind = ${modifier}SHIFT,W,exec,web-search
-          bind = ${modifier}ALT,W,exec,wallsetter
+          bind = ${modifier},D,exec,rofi-launcher
+          bind = ${modifier}SHIFT,S,exec,web-search
+          bind = ${modifier},W,exec,wallsetter
           bind = ${modifier}SHIFT,N,exec,swaync-client -rs
-          bind = ${modifier},W,exec,${browser}
-          bind = ${modifier},E,exec,emopicker9000
+          #bind = ${modifier},W,exec,${browser}
+          bind = ${modifier},SHIFT,E,exec,emopicker9000
           bind = ${modifier},S,exec,screenshootin
-          bind = ${modifier},D,exec,discord
-          bind = ${modifier},O,exec,obs
+          #bind = ${modifier},D,exec,discord
+          #bind = ${modifier},O,exec,obs
           bind = ${modifier},C,exec,hyprpicker -a
-          bind = ${modifier},G,exec,gimp
-          bind = ${modifier}SHIFT,G,exec,godot4
+          #bind = ${modifier},G,exec,gimp
+          #bind = ${modifier}SHIFT,G,exec,godot4
           bind = ${modifier},T,exec,thunar
-          bind = ${modifier},M,exec,spotify
+          #bind = ${modifier},M,exec,spotify
           bind = ${modifier},Q,killactive,
           bind = ${modifier},P,pseudo,
           bind = ${modifier}SHIFT,I,togglesplit,
           bind = ${modifier},F,fullscreen,
           bind = ${modifier}SHIFT,F,togglefloating,
-          bind = ${modifier}SHIFT,C,exit,
+          bind = CTRL ALT, Delete, exec, hyprctl dispatch exit 0
           bind = ${modifier}SHIFT,left,movewindow,l
           bind = ${modifier}SHIFT,right,movewindow,r
           bind = ${modifier}SHIFT,up,movewindow,u

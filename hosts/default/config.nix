@@ -4,6 +4,7 @@
   host,
   username,
   options,
+  input,
   ...
 }:
 let
@@ -23,17 +24,20 @@ in
 
   boot = {
     # Kernel
-    kernelPackages = pkgs.linuxPackages_zen;
+    kernelPackages = pkgs.linuxPackages_latest;
     # This is for OBS Virtual Cam Support
     kernelModules = [ "v4l2loopback" ];
     extraModulePackages = [ config.boot.kernelPackages.v4l2loopback ];
     # Needed For Some Steam Games
-    kernel.sysctl = {
-      "vm.max_map_count" = 2147483642;
+    #kernel.sysctl = {
+    #  "vm.max_map_count" = 2147483642;
     };
-    # Bootloader.
+    # Bootloader SystemD
     loader.systemd-boot.enable = true;
     loader.efi.canTouchEfiVariables = true;
+    
+    # loader.efi.efiSysMountPoint = "/efi"; # if you have a separate /efi partition
+
     # Make /tmp a tmpfs
     tmp = {
       useTmpfs = false;
@@ -118,7 +122,7 @@ in
   networking.timeServers = options.networking.timeServers.default ++ [ "pool.ntp.org" ];
 
   # Set your time zone.
-  time.timeZone = "America/Chicago";
+  time.timeZone = "Asia/Seoul";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
@@ -136,7 +140,7 @@ in
   };
 
   programs = {
-    firefox.enable = false;
+    firefox.enable = true;
     starship = {
       enable = true;
       settings = {
@@ -215,12 +219,12 @@ in
       enableSSHSupport = true;
     };
     virt-manager.enable = true;
-    steam = {
-      enable = true;
-      gamescopeSession.enable = true;
-      remotePlay.openFirewall = true;
-      dedicatedServer.openFirewall = true;
-    };
+    #steam = {
+    #  enable = true;
+    #  gamescopeSession.enable = true;
+    #  remotePlay.openFirewall = true;
+    #  dedicatedServer.openFirewall = true;
+    #};
     thunar = {
       enable = true;
       plugins = with pkgs.xfce; [
@@ -245,7 +249,7 @@ in
     cmatrix
     lolcat
     htop
-    brave
+    #brave
     libvirt
     lxqt.lxqt-policykit
     lm_sensors
@@ -293,14 +297,26 @@ in
     spotify
     neovide
     greetd.tuigreet
+
+    # additional font
+    symbola
   ];
+
+  # hyprland development or -git version
+  programs.hyprland = {
+    enable = true;
+    # set the flake package
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    # make sure to also set the portal package, so that they are in sync
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
 
   fonts = {
     packages = with pkgs; [
       noto-fonts-emoji
       noto-fonts-cjk
       font-awesome
-      symbola
+      #symbola
       material-icons
     ];
   };
@@ -313,14 +329,13 @@ in
   # Extra Portal Configuration
   xdg.portal = {
     enable = true;
-    wlr.enable = true;
+    wlr.enable = false;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal
+      #pkgs.xdg-desktop-portal
     ];
     configPackages = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-hyprland
       pkgs.xdg-desktop-portal
     ];
   };
@@ -357,18 +372,19 @@ in
     gvfs.enable = true;
     openssh.enable = true;
     flatpak.enable = false;
-    printing = {
-      enable = true;
-      drivers = [
+    #printing = {
+    #  enable = false;
+    #  drivers = [
         # pkgs.hplipWithPlugin
-      ];
-    };
+    #  ];
+    #};
     gnome.gnome-keyring.enable = true;
-    avahi = {
-      enable = true;
-      nssmdns4 = true;
-      openFirewall = true;
-    };
+    #avahi = {
+    #  enable = true;
+    #  nssmdns4 = true;
+    #  openFirewall = true;
+    #};
+    
     ipp-usb.enable = true;
     syncthing = {
       enable = false;
@@ -391,11 +407,11 @@ in
       flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     '';
   };
-  hardware.sane = {
-    enable = true;
-    extraBackends = [ pkgs.sane-airscan ];
-    disabledDefaultBackends = [ "escl" ];
-  };
+  #hardware.sane = {
+  #  enable = true;
+  #  extraBackends = [ pkgs.sane-airscan ];
+  #  disabledDefaultBackends = [ "escl" ];
+  #};
 
   # Extra Logitech Support
   hardware.logitech.wireless.enable = false;

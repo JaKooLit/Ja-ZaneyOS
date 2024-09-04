@@ -17,24 +17,18 @@ pkgs.writeShellScriptBin "list-hypr-bindings" ''
   --timeout-indicator=right \
   " = Windows/Super/CAPS LOCK" "Modifier Key, used for keybindings" "Doesn't really execute anything by itself." \
   " + ENTER" "Terminal" "${terminal}" \
-  " + SHIFT + ENTER" "App Launcher" "rofi" \
-  " + ALT + W" "Change Wallpaper" "wallsetter" \
+  " + D "App Launcher" "rofi" \
+  " + W" "Change Wallpaper" "wallsetter" \
   " + Q" "Kill Focused Window" "killactive" \
-  " + SHIFT + W" "Search Websites Like Nix Packages" "web-search" \
   " + SHIFT + N" "Reload SwayNC Styling" "swaync-client -rs" \
-  " + W" "Launch Web Browser" "${browser}" \
   " + E" "Launch Emoji Selector" "emopicker9000" \
   " + S" "Take Screenshot" "screenshootin" \
-  " + D" "Launch Discord" "discord" \
-  " + O" "Launch OBS" "obs" \
-  " + G" "Launch GIMP" "gimp" \
-  " + N" "Launch New File Browser Window" "thunar" \
-  " + M" "Launch Spotify" "spotify" \
+  " + T" "Launch New File Browser Window" "thunar" \
   " + P" "Pseudo Tiling" "pseudo" \
   " + SHIFT + I" "Toggle Split Direction" "togglesplit" \
   " + F" "Toggle Focused Fullscreen" "fullscreen" \
   " + SHIFT + F" "Toggle Focused Floating" "fullscreen" \
-  " + SHIFT + C" "Quit / Exit Hyprland" "exit" \
+  "CTRL + ALT + Del" "Quit / Exit Hyprland" "exit" \
   " + Left" "Move Focus To Window On The Left" "movefocus,l" \
   " + Right" "Move Focus To Window On The Right" "movefocus,r" \
   " + Up" "Move Focus To Window On The Up" "movefocus,u" \

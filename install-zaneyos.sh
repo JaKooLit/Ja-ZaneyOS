@@ -56,8 +56,8 @@ fi
 echo "-----"
 
 echo "Cloning & Entering ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git
-cd zaneyos || exit
+git clone --depth 1 https://github.com/JaKooLit/Ja-ZaneyOS.git
+cd Ja-ZaneyOS || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 git config --global user.name "installer"

@@ -4,9 +4,9 @@
   home.file.".config/swaync/config.json".text = ''
     {
       "$schema": "/etc/xdg/swaync/configSchema.json",
-      "positionX": "right",
+      "positionX": "center",
       "positionY": "top",
-      "control-center-margin-top": 10,
+      "control-center-margin-top": 5,
       "control-center-margin-bottom": 10,
       "control-center-margin-right": 10,
       "control-center-margin-left": 10,
@@ -17,8 +17,8 @@
       "timeout-low": 5,
       "timeout-critical": 0,
       "fit-to-screen": false,
-      "control-center-width": 500,
-      "control-center-height": 1025,
+      "control-center-width": 400,
+      "control-center-height": 720,
       "notification-window-width": 500,
       "keyboard-shortcuts": true,
       "image-visibility": "when-available",

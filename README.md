@@ -1,3 +1,5 @@
+# WIP - Adjusting to align to KooL's Hyprland Dots :)
+
 <div align="center">
 
 ## ZaneyOS 🟰 Best ❄️ NixOS Configs
