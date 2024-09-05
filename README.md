@@ -50,7 +50,7 @@ Please do yourself a favor and [read the wiki](https://zaney.org/zaneyos-2.2/).
 
 #### 🙋 Having Issues / Questions?
 - Please feel free to raise an issue on the repo, please label a feature request with the title beginning with [feature request], thank you!
-- Contact me on [Discord](https://discord.gg/2cRdBs8) as well, for a potentially faster response.
+- Contact Zaney (Tyler) on his [Discord](https://discord.gg/2cRdBs8) as well, for a potentially faster response.
 
 ### ⬇️ Install
 
@@ -77,8 +77,8 @@ nix-shell -p git vim
 Clone this repo & enter it:
 
 ```
-git clone https://gitlab.com/zaney/zaneyos.git
-cd zaneyos
+git clone --depth 1 -b ja-edited https://github.com/JaKooLit/Ja-ZaneyOS
+cd Ja-ZaneyOS
 ```
 
 - *You should stay in this folder for the rest of the install*
