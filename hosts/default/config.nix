@@ -251,61 +251,60 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    vim
-    wget
-    killall
-    eza
-    git
-    cmatrix
-    lolcat
-    htop
-    #brave
-    lxqt.lxqt-policykit
-    lm_sensors
-    unzip
-    unrar
-    libnotify
-    v4l-utils
-    ydotool
-    duf
-    ncdu
-    wl-clipboard
-    pciutils
-    ffmpeg
-    socat
-    cowsay
-    ripgrep
-    lshw
-    bat
-    pkg-config
-    meson
-    hyprpicker
-    ninja
-    brightnessctl
-    virt-viewer
-    swappy
     appimage-run
-    networkmanagerapplet
-    yad
-    inxi
-    playerctl
-    nh
-    nixfmt-rfc-style
+    bat
+    brightnessctl
+    cmatrix
+    cowsay
     discord
-    libvirt
-    swww
-    grim
-    slurp
+    duf
+    eza
+    ffmpeg
     file-roller
-    swaynotificationcenter
-    imv
-    mpv
     gimp
-    pavucontrol
-    tree
-    spotify
-    neovide
+    git
     greetd.tuigreet
+    grim
+    htop
+    hyprpicker
+    imv
+    inxi
+    killall
+    libnotify
+    libvirt
+    lm_sensors
+    lolcat
+    lshw
+    lxqt.lxqt-policykit
+    meson
+    mpv
+    ncdu
+    neovide
+    networkmanagerapplet
+    nh
+    ninja
+    nixfmt-rfc-style
+    pavucontrol
+    pciutils
+    pkg-config
+    playerctl
+    ripgrep
+    slurp
+    socat
+    spotify
+    swappy
+    swaynotificationcenter
+    swww
+    tree
+    unrar
+    unzip
+    v4l-utils
+    vim
+    virt-viewer
+    wget
+    wl-clipboard
+    yad
+    ydotool
   ];
 
   # hyprland development or -git version

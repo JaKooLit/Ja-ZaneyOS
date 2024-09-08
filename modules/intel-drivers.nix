@@ -1,9 +1,4 @@
-{
-  lib,
-  pkgs,
-  config,
-  ...
-}:
+{ lib, pkgs, config, ... }:
 with lib;
 let
   cfg = config.drivers.intel;
@@ -19,12 +14,12 @@ in
     };
 
     # OpenGL
-    hardware.opengl = {
+    hardware.graphics = {
       extraPackages = with pkgs; [
         intel-media-driver
-        vaapiIntel
-        vaapiVdpau
         libvdpau-va-gl
+        libva
+			  libva-utils	
       ];
     };
   };
