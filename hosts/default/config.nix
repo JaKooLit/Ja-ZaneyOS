@@ -260,7 +260,6 @@ in
     lolcat
     htop
     #brave
-    libvirt
     lxqt.lxqt-policykit
     lm_sensors
     unzip
@@ -307,9 +306,6 @@ in
     spotify
     neovide
     greetd.tuigreet
-
-    # additional font
-    #symbola
   ];
 
   # hyprland development or -git version
