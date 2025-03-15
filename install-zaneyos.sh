@@ -35,16 +35,19 @@ fi
 
 echo "-----"
 
+
 echo "Enter Your Hardware Profile (GPU)"
-echo "Options: [ amd  nvidia  nvidia-laptop  intel  vm  vm-reduced]"
-read -rp "Please type out your choice: " profile
+echo -e "Options: [\n  amd\n  nvidia\n  nvidia-laptop\n  intel\n  vm\n  vm-reduced\n]"
+
+read -rp "Please type out your choice: NOTE: default profile is amd: " profile
+
 if [ -z "$profile" ]; then
   profile="amd"
 fi
 
-# Debug: Check the selected profile
 echo "You selected: $profile"
 echo "-----"
+
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "Ja-ZaneyOS" ]; then
