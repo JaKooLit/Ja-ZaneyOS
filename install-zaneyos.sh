@@ -42,6 +42,7 @@ nvidia
 nvidia-laptop
 intel
 vm
+vm-reduced
 Please type out your choice: " profile
 if [ -z "$profile" ]; then
   profile="amd"
@@ -50,28 +51,28 @@ fi
 echo "-----"
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
-if [ -d "zaneyos" ]; then
-  echo "ZaneyOS exists, backing up to .config/zaneyos-backups folder."
-  if [ -d ".config/zaneyos-backups" ]; then
-    echo "Moving current version of ZaneyOS to backups folder."
-    mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
+if [ -d "Ja-ZaneyOS" ]; then
+  echo "Ja-ZaneyOS exists, backing up to .config/Ja-ZaneyOS-backups folder."
+  if [ -d ".config/Ja-ZaneyOS-backups" ]; then
+    echo "Moving current version of Ja-ZaneyOS to backups folder."
+    mv "$HOME"/Ja-ZaneyOS .config/Ja-ZaneyOS-backups/"$backupname"
     sleep 1
   else
     echo "Creating the backups folder & moving ZaneyOS to it."
-    mkdir -p .config/zaneyos-backups
-    mv "$HOME"/zaneyos .config/zaneyos-backups/"$backupname"
+    mkdir -p .config/Ja-ZaneyOS-backups
+    mv "$HOME"/Ja-ZaneyOS .config/Ja-ZaneyOS-backups/"$backupname"
     sleep 1
   fi
 else
-  echo "Thank you for choosing ZaneyOS."
+  echo "Thank you for choosing Ja-ZaneyOS."
   echo "I hope you find your time here enjoyable!"
 fi
 
 echo "-----"
 
-echo "Cloning & Entering ZaneyOS Repository"
-git clone https://gitlab.com/zaney/zaneyos.git
-cd zaneyos || exit
+echo "Cloning & Entering Ja-ZaneyOS Repository"
+git clone https://github.com/JaKooLit/Ja-ZaneyOS --depth 1
+cd Ja-ZaneyOS || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
 installusername=$(echo $USER)
@@ -116,4 +117,4 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 
-sudo nixos-rebuild switch --flake ~/zaneyos/#${profile}
+sudo nixos-rebuild switch --flake ~/Ja-ZaneyOS/#${profile}

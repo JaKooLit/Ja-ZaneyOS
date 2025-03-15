@@ -100,7 +100,7 @@ nix-shell -p git curl
 Then:
 
 ```
-sh <(curl -L https://gitlab.com/Zaney/zaneyos/-/raw/main/install-zaneyos.sh)
+sh <(curl -L https://github.com/JaKooLit/Ja-ZaneyOS/-/raw/main/install-zaneyos.sh)
 ```
 
 #### 🦽 Manual:
@@ -114,8 +114,8 @@ nix-shell -p git vim
 Clone this repo & enter it:
 
 ```
-git clone https://gitlab.com/zaney/zaneyos.git
-cd zaneyos
+git clone https://github.com/JaKooLit/Ja-ZaneyOS --depth 1
+cd Ja-ZaneyOS
 ```
 
 - _You should stay in this folder for the rest of the install_
