@@ -28,26 +28,22 @@ cd || exit
 
 echo "-----"
 
-read -rp "Enter Your New Hostname: [ default ] " hostName
+read -rp "Enter Your New Hostname: [default] " hostName
 if [ -z "$hostName" ]; then
   hostName="default"
 fi
 
 echo "-----"
 
-read -rp "Enter Your Hardware Profile (GPU)
-Options:
-[ amd ]
-nvidia
-nvidia-laptop
-intel
-vm
-vm-reduced
-Please type out your choice: " profile
+echo "Enter Your Hardware Profile (GPU)"
+echo "Options: [amd, nvidia, nvidia-laptop, intel, vm, vm-reduced]"
+read -rp "Please type out your choice: " profile
 if [ -z "$profile" ]; then
   profile="amd"
 fi
 
+# Debug: Check the selected profile
+echo "You selected: $profile"
 echo "-----"
 
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
@@ -58,7 +54,7 @@ if [ -d "Ja-ZaneyOS" ]; then
     mv "$HOME"/Ja-ZaneyOS .config/Ja-ZaneyOS-backups/"$backupname"
     sleep 1
   else
-    echo "Creating the backups folder & moving ZaneyOS to it."
+    echo "Creating the backups folder & moving Ja-ZaneyOS to it."
     mkdir -p .config/Ja-ZaneyOS-backups
     mv "$HOME"/Ja-ZaneyOS .config/Ja-ZaneyOS-backups/"$backupname"
     sleep 1
@@ -75,6 +71,7 @@ git clone https://github.com/JaKooLit/Ja-ZaneyOS --depth 1
 cd Ja-ZaneyOS || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
+
 installusername=$(echo $USER)
 git config --global user.name "$installusername"
 git config --global user.email "$installusername@gmail.com"
@@ -84,21 +81,20 @@ git config --global --unset-all user.email
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
 sed -i "/^\s*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
 
+echo "-----"
 
-read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
+read -rp "Enter your keyboard layout: [us] " keyboardLayout
 if [ -z "$keyboardLayout" ]; then
   keyboardLayout="us"
 fi
-
 sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardLayout\"/" ./hosts/$hostName/variables.nix
 
 echo "-----"
 
-read -rp "Enter your console keymap: [ us ] " consoleKeyMap
+read -rp "Enter your console keymap: [us] " consoleKeyMap
 if [ -z "$consoleKeyMap" ]; then
   consoleKeyMap="us"
 fi
-
 sed -i "/^\s*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
 
 echo "-----"

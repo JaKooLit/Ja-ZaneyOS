@@ -100,7 +100,7 @@ nix-shell -p git curl
 Then:
 
 ```
-sh <(curl -L https://github.com/JaKooLit/Ja-ZaneyOS/-/raw/main/install-zaneyos.sh)
+sh <(curl -L https://raw.githubusercontent.com/JaKooLit/Ja-ZaneyOS/main/install-zaneyos.sh)
 ```
 
 #### 🦽 Manual:
@@ -142,6 +142,7 @@ these options:
 - nvidia-laptop
 - intel
 - vm
+- vm-reduced
 
 ```
 NIX_CONFIG="experimental-features = nix-command flakes" 
