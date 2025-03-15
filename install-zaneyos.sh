@@ -36,7 +36,7 @@ fi
 echo "-----"
 
 echo "Enter Your Hardware Profile (GPU)"
-echo "Options: [amd, nvidia, nvidia-laptop, intel, vm, vm-reduced]"
+echo "Options: [ amd  nvidia  nvidia-laptop  intel  vm  vm-reduced]"
 read -rp "Please type out your choice: " profile
 if [ -z "$profile" ]; then
   profile="amd"

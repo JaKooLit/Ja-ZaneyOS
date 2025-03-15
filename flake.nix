@@ -74,6 +74,16 @@
         };
         modules = [./profiles/vm];
       };
+      vm-reduced = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit host;
+          inherit profile;
+        };
+        modules = [./profiles/vm-reduced];
+      };
     };
   };
 }
