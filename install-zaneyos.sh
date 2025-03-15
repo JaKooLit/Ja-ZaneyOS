@@ -35,6 +35,20 @@ fi
 
 echo "-----"
 
+read -rp "Enter Your Hardware Profile (GPU)
+Options:
+[ amd ]
+nvidia
+nvidia-laptop
+intel
+vm
+Please type out your choice: " profile
+if [ -z "$profile" ]; then
+  profile="amd"
+fi
+
+echo "-----"
+
 backupname=$(date "+%Y-%m-%d-%H-%M-%S")
 if [ -d "zaneyos" ]; then
   echo "ZaneyOS exists, backing up to .config/zaneyos-backups folder."
@@ -60,10 +74,14 @@ git clone https://gitlab.com/zaney/zaneyos.git
 cd zaneyos || exit
 mkdir hosts/"$hostName"
 cp hosts/default/*.nix hosts/"$hostName"
-git config --global user.name "installer"
-git config --global user.email "installer@gmail.com"
+installusername=$(echo $USER)
+git config --global user.name "$installusername"
+git config --global user.email "$installusername@gmail.com"
 git add .
+git config --global --unset-all user.name
+git config --global --unset-all user.email
 sed -i "/^\s*host[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$hostName\"/" ./flake.nix
+sed -i "/^\s*profile[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$profile\"/" ./flake.nix
 
 
 read -rp "Enter your keyboard layout: [ us ] " keyboardLayout
@@ -75,7 +93,15 @@ sed -i "/^\s*keyboardLayout[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$keyboardL
 
 echo "-----"
 
-installusername=$(echo $USER)
+read -rp "Enter your console keymap: [ us ] " consoleKeyMap
+if [ -z "$consoleKeyMap" ]; then
+  consoleKeyMap="us"
+fi
+
+sed -i "/^\s*consoleKeyMap[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$consoleKeyMap\"/" ./hosts/$hostName/variables.nix
+
+echo "-----"
+
 sed -i "/^\s*username[[:space:]]*=[[:space:]]*\"/s/\"\(.*\)\"/\"$installusername\"/" ./flake.nix
 
 echo "-----"
@@ -90,4 +116,4 @@ NIX_CONFIG="experimental-features = nix-command flakes"
 
 echo "-----"
 
-sudo nixos-rebuild switch --flake ~/zaneyos/#${hostName}
+sudo nixos-rebuild switch --flake ~/zaneyos/#${profile}

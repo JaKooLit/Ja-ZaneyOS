@@ -2,49 +2,78 @@
   description = "ZaneyOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    stylix.url = "github:danth/stylix";
-    fine-cmdline = {
-      url = "github:VonHeikemen/fine-cmdline.nvim";
-      flake = false;
+    home-manager = {
+      url = "github:nix-community/home-manager/release-24.11";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
+    nixpkgs.url = "github:nixos/nixpkgs/release-24.11";
+    nvf.url = "github:notashelf/nvf";
+    stylix.url = "github:danth/stylix/release-24.11";
+    # Yazi TUI filemanager
+     yazi = {
+      url = "github:sxyazi/yazi";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs =
-    { nixpkgs, home-manager, ... }@inputs:
-    let
-      system = "aarch64-linux";
-      host = "nixbook";
-      username = "zaney";
-    in
-    {
-      nixosConfigurations = {
-        "${host}" = nixpkgs.lib.nixosSystem {
-          specialArgs = {
-	    inherit system;
-            inherit inputs;
-            inherit username;
-            inherit host;
-          };
-          modules = [
-            ./hosts/${host}/config.nix
-            inputs.stylix.nixosModules.stylix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = {
-                inherit username;
-                inherit inputs;
-                inherit host;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.users.${username} = import ./hosts/${host}/home.nix;
-            }
-          ];
+  outputs = {nixpkgs, ...} @ inputs: let
+    system = "x86_64-linux";
+    host = "default";
+    profile = "amd";
+    username = "zaney";
+  in {
+    nixosConfigurations = {
+      amd = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit host;
+          inherit profile;
         };
+        modules = [./profiles/amd];
+      };
+      nvidia = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit host;
+          inherit profile;
+        };
+        modules = [./profiles/nvidia];
+      };
+      nvidia-laptop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit host;
+          inherit profile;
+        };
+        modules = [./profiles/nvidia-laptop];
+      };
+      intel = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit host;
+          inherit profile;
+        };
+        modules = [./profiles/intel];
+      };
+      vm = nixpkgs.lib.nixosSystem {
+        inherit system;
+        specialArgs = {
+          inherit inputs;
+          inherit username;
+          inherit host;
+          inherit profile;
+        };
+        modules = [./profiles/vm];
       };
     };
+  };
 }
